@@ -187,22 +187,17 @@
             transition: opacity 0.2s ease; /* لتأثير سلاسة عند تغيير نوع الختمة */
         }
 
-        /* توحيد الإطارات الشبكية للقسمين */
-        .khatmah-cards-container,
-        .tabs-container {
+        /* إطار بطاقات الختمة */
+        .khatmah-cards-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             width: 100%;
+            margin-bottom: 12px; /* مسافة مريحة وممتازة مباشرة فوق قائمة السور */
         }
 
-        .khatmah-cards-container {
-            margin-bottom: 4px;
-        }
-
-        /* توحيد الهيكل البرمجي والارتفاع للبطاقات الإحصائية والتبويبات بنسبة مطابقة تماماً */
-        .khatmah-card,
-        .tab-btn {
+        /* الهيكل البرمجي والارتفاع للبطاقات الإحصائية للتحكم والتطابق 100% */
+        .khatmah-card {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
@@ -220,20 +215,18 @@
             user-select: none;
             -webkit-user-select: none;
             width: 100%;
-            height: 38px; /* توحيد الارتفاع الرياضي للتحكم والتطابق 100% */
+            height: 38px;
         }
 
         /* تأثيرات التمرير فوق البطاقات */
-        .khatmah-card:hover,
-        .tab-btn:hover {
+        .khatmah-card:hover {
             border-color: rgba(212, 175, 55, 0.15);
             background: rgba(255, 255, 255, 0.015);
             transform: translateY(-1px);
         }
 
         /* التنسيق للبطاقة النشطة */
-        .khatmah-card.active,
-        .tab-btn.active {
+        .khatmah-card.active {
             background: var(--switcher-btn-active);
             border-color: rgba(212, 175, 55, 0.3);
             box-shadow: 0 4px 12px var(--shadow-intensity), inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -241,8 +234,7 @@
         }
 
         /* زخرفة خلفية هندسية ناعمة جداً */
-        .khatmah-card-pattern,
-        .tab-card-pattern {
+        .khatmah-card-pattern {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             opacity: 0.01;
@@ -251,22 +243,19 @@
             transition: opacity 0.3s ease;
         }
 
-        .khatmah-card.active .khatmah-card-pattern,
-        .tab-btn.active .tab-card-pattern {
+        .khatmah-card.active .khatmah-card-pattern {
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0l20 20-20 20L0 20z' fill='%23d4af37' fill-opacity='0.5' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
         /* الهيكل الأفقي الداخلي لضغط المساحة */
-        .khatmah-card-content,
-        .tab-card-content {
+        .khatmah-card-content {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .khatmah-card-badge,
-        .tab-card-badge {
+        .khatmah-card-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -282,29 +271,14 @@
             flex-shrink: 0;
         }
 
-        .khatmah-card.active .khatmah-card-badge,
-        .tab-btn.active .tab-card-badge {
+        .khatmah-card.active .khatmah-card-badge {
             background: rgba(212, 175, 55, 0.08);
             border-color: rgba(212, 175, 55, 0.25);
             color: var(--accent-gold);
         }
 
-        /* أيقونة بادج المفضلة وكل السور */
-        .tab-badge-icon {
-            width: 10px;
-            height: 10px;
-            stroke: currentColor;
-            opacity: 0.8;
-            flex-shrink: 0;
-        }
-
-        .tab-badge-icon[fill="currentColor"] {
-            stroke: none;
-        }
-
         /* نقطة الحالة الذهبية النابضة عند الاختيار */
-        .khatmah-card-status-dot,
-        .tab-card-status-dot {
+        .khatmah-card-status-dot {
             width: 4.5px;
             height: 4.5px;
             border-radius: 50%;
@@ -313,29 +287,31 @@
             flex-shrink: 0;
         }
 
-        .khatmah-card.active .khatmah-card-status-dot,
-        .tab-btn.active .tab-card-status-dot {
+        .khatmah-card.active .khatmah-card-status-dot {
             background: var(--accent-gold);
             box-shadow: 0 0 5px var(--accent-gold);
             animation: statusPulse 2s infinite ease-in-out;
         }
 
-        /* نصوص الكارت والتبويبات المضغوطة */
-        .khatmah-card-text,
-        .tab-card-text {
+        @keyframes statusPulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        /* نصوص الكارت المضغوطة */
+        .khatmah-card-text {
             display: flex;
             flex-direction: column;
             gap: 0px;
             text-align: right;
         }
 
-        html[dir="ltr"] .khatmah-card-text,
-        html[dir="ltr"] .tab-card-text {
+        html[dir="ltr"] .khatmah-card-text {
             text-align: left;
         }
 
-        .khatmah-card-title,
-        .tab-card-title {
+        .khatmah-card-title {
             font-size: 0.78rem;
             font-weight: 700;
             color: var(--text-muted);
@@ -344,13 +320,11 @@
             font-family: inherit;
         }
 
-        .khatmah-card.active .khatmah-card-title,
-        .tab-btn.active .tab-card-title {
+        .khatmah-card.active .khatmah-card-title {
             color: var(--accent-gold);
         }
 
-        .khatmah-card-desc,
-        .tab-card-desc {
+        .khatmah-card-desc {
             font-size: 0.62rem;
             font-weight: 400;
             color: var(--text-muted);
@@ -360,17 +334,9 @@
             font-family: inherit;
         }
 
-        .khatmah-card.active .khatmah-card-desc,
-        .tab-btn.active .tab-card-desc {
+        .khatmah-card.active .khatmah-card-desc {
             color: var(--text-main);
             opacity: 0.8;
-        }
-
-        /* أشرطة التحكم */
-        .controls-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
         }
 
         /* قائمة السور الموحدة */
@@ -776,38 +742,6 @@
             </button>
         </div>
 
-        <!-- أداة التبويبات الفاخرة المحدثة بمظهر يطابق تماماً كروت الختمات وبنفس الارتفاع والتكامل المتوازن -->
-        <div class="controls-wrapper">
-            <div class="tabs-container">
-                <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">
-                    <div class="tab-card-pattern"></div>
-                    <div class="tab-card-content">
-                        <span class="tab-card-badge" id="tab-all-badge">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="tab-badge-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
-                        </span>
-                        <div class="tab-card-text">
-                            <h3 id="tab-all-title" class="tab-card-title">كل السور</h3>
-                            <p id="tab-all-desc" class="tab-card-desc">الفهرس الكامل</p>
-                        </div>
-                    </div>
-                    <span class="tab-card-status-dot"></span>
-                </button>
-                <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">
-                    <div class="tab-card-pattern"></div>
-                    <div class="tab-card-content">
-                        <span class="tab-card-badge" id="tab-fav-badge">
-                            <svg viewBox="0 0 24 24" fill="currentColor" class="tab-badge-icon"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
-                        </span>
-                        <div class="tab-card-text">
-                            <h3 id="tab-fav-title" class="tab-card-title">المفضلة</h3>
-                            <p id="tab-fav-desc" class="tab-card-desc">سورتك المختارة</p>
-                        </div>
-                    </div>
-                    <span class="tab-card-status-dot"></span>
-                </button>
-            </div>
-        </div>
-
         <div class="surah-list-container" id="main-surah-list"></div>
     </div>
 
@@ -1070,21 +1004,12 @@
             
             surahs.sort((a, b) => a.id - b.id);
 
-            let filteredSurahs = surahs;
-            if (currentActiveTab === 'fav') {
-                filteredSurahs = surahs.filter(s => favorites.includes(s.id));
-            }
-
-            if (filteredSurahs.length === 0) {
-                if (currentActiveTab === 'fav') {
-                    mainList.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding: 30px; font-size:0.85rem; font-weight:300;">${i18n[currentLang].emptyFav}</p>`;
-                } else {
-                    mainList.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding: 30px; font-size:0.85rem; font-weight:300;">${i18n[currentLang].emptyList}</p>`;
-                }
+            if (surahs.length === 0) {
+                mainList.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding: 30px; font-size:0.85rem; font-weight:300;">${i18n[currentLang].emptyList}</p>`;
                 return;
             }
 
-            filteredSurahs.forEach((surah, index) => {
+            surahs.forEach((surah, index) => {
                 const delay = Math.min(index * 0.02, 1);
                 // السورة لا تظهر نشطة إلا إذا كانت تطابق السورة والختمة التي انطلقت منها!
                 const isCurrentPlaying = (playingSurahId === surah.id && playingKhatmahId === currentKhatmah);
@@ -1143,13 +1068,6 @@
             });
         }
 
-        function switchTab(tab) {
-            currentActiveTab = tab;
-            document.getElementById('tab-all').classList.toggle('active', tab === 'all');
-            document.getElementById('tab-fav').classList.toggle('active', tab === 'fav');
-            renderUI();
-        }
-
         // تبديل الختمة المحددة بذكاء وسلاسة (يظل الصوت السابق يعمل بسلام دون انقطاع وتحديث النشاط البصري فقط)
         async function switchKhatmah(num) {
             if (currentKhatmah === num) return;
@@ -1185,17 +1103,12 @@
             }
             localStorage.setItem('premium_quran_favorites', JSON.stringify(favorites));
             
-            // في وضع المفضلة نقوم بإعادة الرسم لحذف العناصر غير المفضلة، وفي الوضع العادي نكتفي بالتحديث البصري الذكي
-            if (currentActiveTab === 'fav') {
-                renderUI();
-            } else {
-                const row = document.querySelector(`.surah-row[data-id="${id}"]`);
-                if (row) {
-                    const favBtn = row.querySelector('.fav-btn');
-                    const isFav = favorites.includes(id);
-                    favBtn.classList.toggle('is-fav', isFav);
-                    favBtn.title = isFav ? i18n[currentLang].favTitleRemove : i18n[currentLang].favTitleAdd;
-                }
+            const row = document.querySelector(`.surah-row[data-id="${id}"]`);
+            if (row) {
+                const favBtn = row.querySelector('.fav-btn');
+                const isFav = favorites.includes(id);
+                favBtn.classList.toggle('is-fav', isFav);
+                favBtn.title = isFav ? i18n[currentLang].favTitleRemove : i18n[currentLang].favTitleAdd;
             }
         }
 
@@ -1227,12 +1140,6 @@
             document.getElementById('khatmah-2-desc').innerText = i18n[currentLang].khatmah2Desc;
             document.getElementById('khatmah-1-badge').innerText = i18n[currentLang].khatmahBadge1;
             document.getElementById('khatmah-2-badge').innerText = i18n[currentLang].khatmahBadge2;
-
-            // تحديث التبويبات المتطابقة لغوياً
-            document.getElementById('tab-all-title').innerText = i18n[currentLang].tabAllTitle;
-            document.getElementById('tab-all-desc').innerText = i18n[currentLang].tabAllDesc;
-            document.getElementById('tab-fav-title').innerText = i18n[currentLang].tabFavTitle;
-            document.getElementById('tab-fav-desc').innerText = i18n[currentLang].tabFavDesc;
 
             // تحديث نصوص أوضاع التشغيل ومؤقت النوم
             const activeModeLabel = playMode === 'all' ? 'playNext' : playMode === 'one' ? 'repeatOne' : 'stopAfter';
