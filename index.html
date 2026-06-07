@@ -272,7 +272,7 @@
             justify-content: center;
             width: 20px;
             height: 20px;
-            border-radius: 5px;
+            border-radius: 50%;
             background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--glass-border);
             font-size: 0.68rem;
@@ -523,7 +523,7 @@
             border-top-left-radius: 16px;
             border-top-right-radius: 16px;
             transition: width 0.1s linear;
-            box-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 0 6px rgba(212, 175, 55, 0.4) rotate(0deg);
         }
 
         /* مقبض سحب احترافي (Thumb) صغير الحجم ومستقر بشكل دائم من البداية */
@@ -1114,7 +1114,7 @@
             });
         }
 
-        // دالة التحديث الذكي والنشط للمسار الحالي لمنع الوميض والبطء تماماً
+        // دالة التحديث الذكي والنشط للمسار الحالي لمنع الوميض والتعليق البصري
         function updateActiveRowUI() {
             const rows = document.querySelectorAll('.surah-row');
             rows.forEach(row => {
@@ -1143,7 +1143,7 @@
             renderUI();
         }
 
-        // تبديل الختمة المحددة بذكاء وسلاسة
+        // تبديل الختمة المحددة بذكاء وسلاسة مع معالجة وتحديث الروابط للمسار الصوتي الجاري تشغيله فوراً
         async function switchKhatmah(num) {
             if (currentKhatmah === num) return;
             currentKhatmah = num;
@@ -1164,6 +1164,32 @@
 
             // جلب البيانات الخاصة بالختمة النشطة الجديدة
             await fetchSurahData();
+            
+            // مزامنة ملف الصوت الجاري تشغيله وتوجيهه فوراً إلى رابط الختمة الجديدة لضمان توافق أزرار التحكم تماماً
+            if (playingSurahId !== null) {
+                const currentSurah = surahs.find(s => s.id === playingSurahId);
+                if (currentSurah) {
+                    const wasPaused = audioInstance.paused;
+                    audioInstance.src = currentSurah.url;
+                    audioInstance.load();
+                    
+                    if (!wasPaused) {
+                        audioInstance.play().then(() => {
+                            updatePlayerUI(true);
+                        }).catch(err => console.warn(err));
+                    } else {
+                        updatePlayerUI(false);
+                    }
+                    
+                    // تحديث عنوان شريط المشغل السفلي
+                    document.getElementById('player-track-title').innerText = `${i18n[currentLang].surahPrefix}${getSurahName(currentSurah)}`;
+                    updateMediaSession(currentSurah);
+                } else {
+                    audioInstance.pause();
+                    playingSurahId = null;
+                    document.getElementById('global-player').classList.remove('active');
+                }
+            }
             
             // إعادة بناء السور للختمة المعنية
             renderUI();
