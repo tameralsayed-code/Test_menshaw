@@ -387,39 +387,14 @@
             border-left-color: rgba(212, 175, 55, 0.15);
         }
 
-        /* تأثير الوميض (الفلاش) الأخضر للسورة النشطة */
-        @keyframes greenActiveFlash {
-            0% {
-                background-color: rgba(16, 185, 129, 0.05);
-                box-shadow: inset 0 0 5px rgba(16, 185, 129, 0.1);
-            }
-            50% {
-                background-color: rgba(16, 185, 129, 0.2);
-                box-shadow: inset 0 0 15px rgba(16, 185, 129, 0.35), 0 0 8px rgba(16, 185, 129, 0.15);
-            }
-            100% {
-                background-color: rgba(16, 185, 129, 0.05);
-                box-shadow: inset 0 0 5px rgba(16, 185, 129, 0.1);
-            }
-        }
-
         html[dir="rtl"] .surah-row.active-row { 
-            animation: greenActiveFlash 2s infinite ease-in-out;
-            border-right: 3.5px solid var(--success) !important;
-            border-left: none;
+            background: var(--glass-active); 
+            border-right-color: var(--accent-gold);
         }
 
         html[dir="ltr"] .surah-row.active-row { 
-            animation: greenActiveFlash 2s infinite ease-in-out;
-            border-left: 3.5px solid var(--success) !important;
-            border-right: none;
-        }
-
-        /* تعديل ألوان خطوط السورة النشطة لتصبح باللون الأخضر المتوهج */
-        .surah-row.active-row .surah-name,
-        .surah-row.active-row .surah-number {
-            color: var(--success) !important;
-            font-weight: 700;
+            background: var(--glass-active); 
+            border-left-color: var(--accent-gold);
         }
 
         .surah-info { display: flex; align-items: center; gap: 12px; }
@@ -455,12 +430,10 @@
         }
 
         .icon-btn.fav-btn.is-fav { color: var(--accent-gold); }
-        
-        /* جعل زر التشغيل النشط بجانب السورة أخضر متوهج متوافق مع الفلاش */
         .icon-btn.playing-list-btn {
-            color: var(--success) !important;
-            background: rgba(16, 185, 129, 0.1) !important;
-            border-color: rgba(16, 185, 129, 0.2) !important;
+            color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.08);
+            border-color: rgba(212, 175, 55, 0.15);
         }
         .icon-btn svg { width: 15px; height: 15px; }
 
