@@ -30,14 +30,11 @@
             --glass-border: rgba(255, 255, 255, 0.03);
             --glass-active: rgba(212, 175, 55, 0.04);
             --danger: #f43f5e;
-            
-            /* تباين متكامل للأخضر النابض والحدود الفاصلة لمنع الاختفاء في كافة الشاشات */
             --success: #10b981;
-            --row-border: rgba(255, 255, 255, 0.025);
-            --success-border-min: rgba(16, 185, 129, 0.4);
-            --success-border-max: rgba(16, 185, 129, 0.85);
-            --success-bg-min: rgba(16, 185, 129, 0.015);
-            --success-bg-max: rgba(16, 185, 129, 0.04);
+            
+            /* ألوان وميض السورة النشطة - الوضع الداكن */
+            --flash-color: rgba(16, 185, 129, 0.35);
+            --flash-glow: rgba(16, 185, 129, 0.25);
             
             /* ألوان مخصصة لبطاقات الختمة */
             --switcher-bg: rgba(0, 0, 0, 0.25);
@@ -58,14 +55,11 @@
             --glass-border: rgba(0, 0, 0, 0.06);
             --glass-active: rgba(178, 133, 0, 0.05);
             --danger: #e11d48;
-            
-            /* تباين عالي للأخضر النابض والحدود الفاصلة في الوضع النهاري الفاتح */
             --success: #059669;
-            --row-border: rgba(0, 0, 0, 0.045);
-            --success-border-min: rgba(5, 150, 105, 0.6);
-            --success-border-max: rgba(5, 150, 105, 0.95);
-            --success-bg-min: rgba(5, 150, 105, 0.04);
-            --success-bg-max: rgba(5, 150, 105, 0.09);
+            
+            /* ألوان وميض السورة النشطة - الوضع الفاتح */
+            --flash-color: rgba(5, 150, 105, 0.35);
+            --flash-glow: rgba(5, 150, 105, 0.2);
             
             /* ألوان مخصصة لبطاقات الختمة في الوضع الفاتح */
             --switcher-bg: rgba(0, 0, 0, 0.03);
@@ -201,17 +195,22 @@
             transition: opacity 0.2s ease; /* لتأثير سلاسة عند تغيير نوع الختمة */
         }
 
-        /* إطار بطاقات الختمة */
-        .khatmah-cards-container {
+        /* توحيد الإطارات الشبكية للقسمين */
+        .khatmah-cards-container,
+        .tabs-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
             width: 100%;
-            margin-bottom: 12px; /* مسافة مريحة وممتازة مباشرة فوق قائمة السور */
         }
 
-        /* الهيكل البرمجي والارتفاع للبطاقات الإحصائية للتحكم والتطابق 100% */
-        .khatmah-card {
+        .khatmah-cards-container {
+            margin-bottom: 4px;
+        }
+
+        /* توحيد الهيكل البرمجي والارتفاع للبطاقات الإحصائية والتبويبات بنسبة مطابقة تماماً */
+        .khatmah-card,
+        .tab-btn {
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
@@ -229,47 +228,29 @@
             user-select: none;
             -webkit-user-select: none;
             width: 100%;
-            height: 38px;
+            height: 38px; /* توحيد الارتفاع الرياضي للتحكم والتطابق 100% */
         }
 
         /* تأثيرات التمرير فوق البطاقات */
-        .khatmah-card:hover {
+        .khatmah-card:hover,
+        .tab-btn:hover {
             border-color: rgba(212, 175, 55, 0.15);
             background: rgba(255, 255, 255, 0.015);
             transform: translateY(-1px);
         }
 
         /* التنسيق للبطاقة النشطة */
-        .khatmah-card.active {
+        .khatmah-card.active,
+        .tab-btn.active {
             background: var(--switcher-btn-active);
             border-color: rgba(212, 175, 55, 0.3);
             box-shadow: 0 4px 12px var(--shadow-intensity), inset 0 1px 0 rgba(255, 255, 255, 0.05);
             transform: translateY(0);
         }
 
-        /* فلاش أخضر تفاعلي ذكي يتكيف ديناميكياً مع الوضعين الداكن والنهاري للبطاقة */
-        @keyframes greenPulse {
-            0% { 
-                box-shadow: 0 0 4px var(--success-border-min), inset 0 1px 0 rgba(255, 255, 255, 0.05); 
-                border-color: var(--success-border-min); 
-            }
-            50% { 
-                box-shadow: 0 0 12px var(--success-border-max), inset 0 1px 0 rgba(255, 255, 255, 0.05); 
-                border-color: var(--success-border-max); 
-            }
-            100% { 
-                box-shadow: 0 0 4px var(--success-border-min), inset 0 1px 0 rgba(255, 255, 255, 0.05); 
-                border-color: var(--success-border-min); 
-            }
-        }
-
-        .khatmah-card.audio-active-khatmah {
-            animation: greenPulse 2.5s infinite ease-in-out !important;
-            border: 1px solid var(--success-border-max) !important;
-        }
-
         /* زخرفة خلفية هندسية ناعمة جداً */
-        .khatmah-card-pattern {
+        .khatmah-card-pattern,
+        .tab-card-pattern {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             opacity: 0.01;
@@ -278,19 +259,22 @@
             transition: opacity 0.3s ease;
         }
 
-        .khatmah-card.active .khatmah-card-pattern {
+        .khatmah-card.active .khatmah-card-pattern,
+        .tab-btn.active .tab-card-pattern {
             opacity: 0.03;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 40 40'%3E%3Cpath d='M20 0l20 20-20 20L0 20z' fill='%23d4af37' fill-opacity='0.5' fill-rule='evenodd'/%3E%3C/svg%3E");
         }
 
         /* الهيكل الأفقي الداخلي لضغط المساحة */
-        .khatmah-card-content {
+        .khatmah-card-content,
+        .tab-card-content {
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        .khatmah-card-badge {
+        .khatmah-card-badge,
+        .tab-card-badge {
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -306,20 +290,29 @@
             flex-shrink: 0;
         }
 
-        .khatmah-card.active .khatmah-card-badge {
+        .khatmah-card.active .khatmah-card-badge,
+        .tab-btn.active .tab-card-badge {
             background: rgba(212, 175, 55, 0.08);
             border-color: rgba(212, 175, 55, 0.25);
             color: var(--accent-gold);
         }
 
-        .khatmah-card.audio-active-khatmah .khatmah-card-badge {
-            background: rgba(var(--success-rgb), 0.08) !important;
-            border-color: var(--success-border-min) !important;
-            color: var(--success) !important;
+        /* أيقونة بادج المفضلة وكل السور */
+        .tab-badge-icon {
+            width: 10px;
+            height: 10px;
+            stroke: currentColor;
+            opacity: 0.8;
+            flex-shrink: 0;
+        }
+
+        .tab-badge-icon[fill="currentColor"] {
+            stroke: none;
         }
 
         /* نقطة الحالة الذهبية النابضة عند الاختيار */
-        .khatmah-card-status-dot {
+        .khatmah-card-status-dot,
+        .tab-card-status-dot {
             width: 4.5px;
             height: 4.5px;
             border-radius: 50%;
@@ -328,38 +321,29 @@
             flex-shrink: 0;
         }
 
-        .khatmah-card.active .khatmah-card-status-dot {
+        .khatmah-card.active .khatmah-card-status-dot,
+        .tab-btn.active .tab-card-status-dot {
             background: var(--accent-gold);
             box-shadow: 0 0 5px var(--accent-gold);
             animation: statusPulse 2s infinite ease-in-out;
         }
 
-        /* تحويل النقطة للأخضر النابض للختمة التي ينتمي إليها الصوت الفعلي */
-        @keyframes statusPulseGreen {
-            0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.4); opacity: 1; }
-            100% { transform: scale(1); opacity: 0.8; }
-        }
-
-        .khatmah-card.audio-active-khatmah .khatmah-card-status-dot {
-            background: var(--success) !important;
-            box-shadow: 0 0 8px var(--success) !important;
-            animation: statusPulseGreen 1.5s infinite ease-in-out !important;
-        }
-
-        /* نصوص الكارت المضغوطة */
-        .khatmah-card-text {
+        /* نصوص الكارت والتبويبات المضغوطة */
+        .khatmah-card-text,
+        .tab-card-text {
             display: flex;
             flex-direction: column;
             gap: 0px;
             text-align: right;
         }
 
-        html[dir="ltr"] .khatmah-card-text {
+        html[dir="ltr"] .khatmah-card-text,
+        html[dir="ltr"] .tab-card-text {
             text-align: left;
         }
 
-        .khatmah-card-title {
+        .khatmah-card-title,
+        .tab-card-title {
             font-size: 0.78rem;
             font-weight: 700;
             color: var(--text-muted);
@@ -368,15 +352,13 @@
             font-family: inherit;
         }
 
-        .khatmah-card.active .khatmah-card-title {
+        .khatmah-card.active .khatmah-card-title,
+        .tab-btn.active .tab-card-title {
             color: var(--accent-gold);
         }
 
-        .khatmah-card.audio-active-khatmah .khatmah-card-title {
-            color: var(--success) !important;
-        }
-
-        .khatmah-card-desc {
+        .khatmah-card-desc,
+        .tab-card-desc {
             font-size: 0.62rem;
             font-weight: 400;
             color: var(--text-muted);
@@ -386,9 +368,17 @@
             font-family: inherit;
         }
 
-        .khatmah-card.active .khatmah-card-desc {
+        .khatmah-card.active .khatmah-card-desc,
+        .tab-btn.active .tab-card-desc {
             color: var(--text-main);
             opacity: 0.8;
+        }
+
+        /* أشرطة التحكم */
+        .controls-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         /* قائمة السور الموحدة */
@@ -405,7 +395,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 11px 16px;
-            border-bottom: 1px solid var(--row-border); /* تباين ناعم وعالي للخط الفاصل بالنهار والليل */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.015);
             transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
             animation: fadeInRow 0.3s ease forwards;
             opacity: 0;
@@ -420,14 +410,14 @@
             background: rgba(255, 255, 255, 0.015); 
         }
 
-        /* دعم الجهات المختلفة للحدود المذهبة التفاعلية - زيادة العرض لـ 3.5px لفرض الرسم البرمجي الفوري للحدود */
+        /* دعم الجهات المختلفة للحدود المذهبة التفاعلية */
         html[dir="rtl"] .surah-row {
-            border-right: 3.5px solid transparent;
+            border-right: 2.5px solid transparent;
             border-left: none;
         }
 
         html[dir="ltr"] .surah-row {
-            border-left: 3.5px solid transparent;
+            border-left: 2.5px solid transparent;
             border-right: none;
         }
 
@@ -439,70 +429,30 @@
             border-left-color: rgba(212, 175, 55, 0.15);
         }
 
-        /* قفل وتأكيد رسم الإطارات الذهبية النشطة بدقة فائقة تمنع الاختفاء */
+        /* تأثير الوميض الأخضر الملحوظ عند تشغيل السورة */
+        @keyframes greenFlash {
+            0% {
+                background-color: var(--flash-color);
+                box-shadow: inset 0 0 15px var(--flash-glow);
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                background-color: var(--glass-active);
+                box-shadow: inset 0 0 0px transparent;
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         html[dir="rtl"] .surah-row.active-row { 
-            background: var(--glass-active); 
-            border-right: 3.5px solid var(--accent-gold) !important;
-            border-left: none !important;
+            border-right-color: var(--accent-gold);
+            animation: greenFlash 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
         }
 
         html[dir="ltr"] .surah-row.active-row { 
-            background: var(--glass-active); 
-            border-left: 3.5px solid var(--accent-gold) !important;
-            border-right: none !important;
-        }
-
-        /* فلاش أخضر ناعم ومتكيف التباين كلياً مع الوضع النهاري والوضع الداكن لسطر السورة لمنع التلاشي */
-        @keyframes greenRowPulse {
-            0% { 
-                border-right-color: var(--success-border-min); 
-                background: var(--success-bg-min); 
-            }
-            50% { 
-                border-right-color: var(--success-border-max); 
-                background: var(--success-bg-max); 
-            }
-            100% { 
-                border-right-color: var(--success-border-min); 
-                background: var(--success-bg-min); 
-            }
-        }
-        @keyframes greenRowPulseLTR {
-            0% { 
-                border-left-color: var(--success-border-min); 
-                background: var(--success-bg-min); 
-            }
-            50% { 
-                border-left-color: var(--success-border-max); 
-                background: var(--success-bg-max); 
-            }
-            100% { 
-                border-left-color: var(--success-border-min); 
-                background: var(--success-bg-min); 
-            }
-        }
-
-        /* تفعيل فرض الرسم الفوري الدائم لإطار السورة الشغالة باللون الأخضر الجذاب */
-        html[dir="rtl"] .surah-row.active-row.audio-playing-row {
-            animation: greenRowPulse 2.5s infinite ease-in-out !important;
-            border-right: 3.5px solid var(--success-border-max) !important;
-            border-left: none !important;
-        }
-
-        html[dir="ltr"] .surah-row.active-row.audio-playing-row {
-            animation: greenRowPulseLTR 2.5s infinite ease-in-out !important;
-            border-left: 3.5px solid var(--success-border-max) !important;
-            border-right: none !important;
-        }
-
-        .surah-row.active-row.audio-playing-row .surah-name {
-            color: var(--success) !important;
-        }
-
-        .surah-row.active-row.audio-playing-row .playing-list-btn {
-            color: var(--success) !important;
-            background: rgba(var(--success-rgb), 0.08) !important;
-            border-color: rgba(var(--success-rgb), 0.15) !important;
+            border-left-color: var(--accent-gold);
+            animation: greenFlash 1.5s cubic-bezier(0.19, 1, 0.22, 1) forwards;
         }
 
         .surah-info { display: flex; align-items: center; gap: 12px; }
@@ -850,6 +800,38 @@
             </button>
         </div>
 
+        <!-- أداة التبويبات الفاخرة المحدثة بمظهر يطابق تماماً كروت الختمات وبنفس الارتفاع والتكامل المتوازن -->
+        <div class="controls-wrapper">
+            <div class="tabs-container">
+                <button class="tab-btn active" id="tab-all" onclick="switchTab('all')">
+                    <div class="tab-card-pattern"></div>
+                    <div class="tab-card-content">
+                        <span class="tab-card-badge" id="tab-all-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="tab-badge-icon"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+                        </span>
+                        <div class="tab-card-text">
+                            <h3 id="tab-all-title" class="tab-card-title">كل السور</h3>
+                            <p id="tab-all-desc" class="tab-card-desc">الفهرس الكامل</p>
+                        </div>
+                    </div>
+                    <span class="tab-card-status-dot"></span>
+                </button>
+                <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">
+                    <div class="tab-card-pattern"></div>
+                    <div class="tab-card-content">
+                        <span class="tab-card-badge" id="tab-fav-badge">
+                            <svg viewBox="0 0 24 24" fill="currentColor" class="tab-badge-icon"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        </span>
+                        <div class="tab-card-text">
+                            <h3 id="tab-fav-title" class="tab-card-title">المفضلة</h3>
+                            <p id="tab-fav-desc" class="tab-card-desc">سورتك المختارة</p>
+                        </div>
+                    </div>
+                    <span class="tab-card-status-dot"></span>
+                </button>
+            </div>
+        </div>
+
         <div class="surah-list-container" id="main-surah-list"></div>
     </div>
 
@@ -1058,13 +1040,11 @@
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.playbackState = "playing";
             }
-            updatePlayerUI(true);
         };
         audioInstance.onpause = () => {
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.playbackState = "paused";
             }
-            updatePlayerUI(false);
         };
 
         // جلب أسماء السور بناءً على اللغة الجارية
@@ -1114,12 +1094,21 @@
             
             surahs.sort((a, b) => a.id - b.id);
 
-            if (surahs.length === 0) {
-                mainList.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding: 30px; font-size:0.85rem; font-weight:300;">${i18n[currentLang].emptyList}</p>`;
+            let filteredSurahs = surahs;
+            if (currentActiveTab === 'fav') {
+                filteredSurahs = surahs.filter(s => favorites.includes(s.id));
+            }
+
+            if (filteredSurahs.length === 0) {
+                if (currentActiveTab === 'fav') {
+                    mainList.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding: 30px; font-size:0.85rem; font-weight:300;">${i18n[currentLang].emptyFav}</p>`;
+                } else {
+                    mainList.innerHTML = `<p style="text-align:center; color:var(--text-muted); padding: 30px; font-size:0.85rem; font-weight:300;">${i18n[currentLang].emptyList}</p>`;
+                }
                 return;
             }
 
-            surahs.forEach((surah, index) => {
+            filteredSurahs.forEach((surah, index) => {
                 const delay = Math.min(index * 0.02, 1);
                 // السورة لا تظهر نشطة إلا إذا كانت تطابق السورة والختمة التي انطلقت منها!
                 const isCurrentPlaying = (playingSurahId === surah.id && playingKhatmahId === currentKhatmah);
@@ -1127,8 +1116,7 @@
                 const surahDisplayName = getSurahName(surah);
 
                 const row = document.createElement('div');
-                // نمنح السطر كلاس active-row للتمثيل العام وكلاس تفاعلي مخصص إذا كان الصوت يعمل الآن بالفعل
-                row.className = `surah-row ${isCurrentPlaying ? 'active-row' : ''} ${isCurrentPlaying && !audioInstance.paused ? 'audio-playing-row' : ''}`;
+                row.className = `surah-row ${isCurrentPlaying ? 'active-row' : ''}`;
                 row.style.animationDelay = `${delay}s`;
                 row.setAttribute('data-id', surah.id);
                 
@@ -1159,18 +1147,16 @@
         // دالة التحديث الذكي والنشط للمسار الحالي لمنع الوميض والتعليق البصري
         function updateActiveRowUI() {
             const rows = document.querySelectorAll('.surah-row');
-            const isPlaying = !audioInstance.paused;
             rows.forEach(row => {
                 const id = parseInt(row.getAttribute('data-id'));
                 // السورة لا تظهر نشطة في القائمة إلا إذا كانت تطابق السورة والختمة التي انطلق منها الصوت حالياً
                 const isCurrent = (id === playingSurahId && playingKhatmahId === currentKhatmah);
                 
                 row.classList.toggle('active-row', isCurrent);
-                row.classList.toggle('audio-playing-row', isCurrent && isPlaying);
                 
                 const listPlayBtn = row.querySelector('.list-play-btn');
                 if (listPlayBtn) {
-                    if (isCurrent && isPlaying) {
+                    if (isCurrent && !audioInstance.paused) {
                         listPlayBtn.innerHTML = icons.pause;
                         listPlayBtn.classList.add('playing-list-btn');
                     } else {
@@ -1179,28 +1165,6 @@
                     }
                 }
             });
-
-            // تحديث بطاقات الختمات برمجياً لتفعيل الفلاش الأخضر للختمة الجارية تشغيلها حالياً في الخلفية
-            updateKhatmahCardsAudioIndicator();
-        }
-
-        // دالة التحكم في إضاءة بطاقة الختمة التي يعمل منها الصوت حالياً
-        function updateKhatmahCardsAudioIndicator() {
-            const card1 = document.getElementById('khatmah-1-btn');
-            const card2 = document.getElementById('khatmah-2-btn');
-            const isPlaying = !audioInstance.paused;
-
-            if (card1 && card2) {
-                card1.classList.remove('audio-active-khatmah');
-                card2.classList.remove('audio-active-khatmah');
-
-                // إضاءة فلاش أخضر للختمة النشطة صوتياً فقط عندما يعمل الصوت حالياً
-                if (playingKhatmahId === 1 && isPlaying) {
-                    card1.classList.add('audio-active-khatmah');
-                } else if (playingKhatmahId === 2 && isPlaying) {
-                    card2.classList.add('audio-active-khatmah');
-                }
-            }
         }
 
         function switchTab(tab) {
@@ -1245,12 +1209,17 @@
             }
             localStorage.setItem('premium_quran_favorites', JSON.stringify(favorites));
             
-            const row = document.querySelector(`.surah-row[data-id="${id}"]`);
-            if (row) {
-                const favBtn = row.querySelector('.fav-btn');
-                const isFav = favorites.includes(id);
-                favBtn.classList.toggle('is-fav', isFav);
-                favBtn.title = isFav ? i18n[currentLang].favTitleRemove : i18n[currentLang].favTitleAdd;
+            // في وضع المفضلة نقوم بإعادة الرسم لحذف العناصر غير المفضلة، وفي الوضع العادي نكتفي بالتحديث البصري الذكي
+            if (currentActiveTab === 'fav') {
+                renderUI();
+            } else {
+                const row = document.querySelector(`.surah-row[data-id="${id}"]`);
+                if (row) {
+                    const favBtn = row.querySelector('.fav-btn');
+                    const isFav = favorites.includes(id);
+                    favBtn.classList.toggle('is-fav', isFav);
+                    favBtn.title = isFav ? i18n[currentLang].favTitleRemove : i18n[currentLang].favTitleAdd;
+                }
             }
         }
 
@@ -1282,6 +1251,12 @@
             document.getElementById('khatmah-2-desc').innerText = i18n[currentLang].khatmah2Desc;
             document.getElementById('khatmah-1-badge').innerText = i18n[currentLang].khatmahBadge1;
             document.getElementById('khatmah-2-badge').innerText = i18n[currentLang].khatmahBadge2;
+
+            // تحديث التبويبات المتطابقة لغوياً
+            document.getElementById('tab-all-title').innerText = i18n[currentLang].tabAllTitle;
+            document.getElementById('tab-all-desc').innerText = i18n[currentLang].tabAllDesc;
+            document.getElementById('tab-fav-title').innerText = i18n[currentLang].tabFavTitle;
+            document.getElementById('tab-fav-desc').innerText = i18n[currentLang].tabFavDesc;
 
             // تحديث نصوص أوضاع التشغيل ومؤقت النوم
             const activeModeLabel = playMode === 'all' ? 'playNext' : playMode === 'one' ? 'repeatOne' : 'stopAfter';
@@ -1673,7 +1648,6 @@
             const timeLabel = document.getElementById('player-current-time');
             let lastPct = 0;
 
-            // حساب النسبة المئوية للسحب لضمان التوافق الكامل مع اتجاه اللمس
             function getPercentage(e) {
                 const rect = container.getBoundingClientRect();
                 let clientX;
