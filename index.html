@@ -233,6 +233,18 @@
             transform: translateY(0);
         }
 
+        /* فلاش أخضر تفاعلي للختمة التي ينطلق منها الصوت الفعلي حالياً */
+        @keyframes greenPulse {
+            0% { box-shadow: 0 0 4px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05); border-color: rgba(16, 185, 129, 0.3); }
+            50% { box-shadow: 0 0 12px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05); border-color: rgba(16, 185, 129, 0.6); }
+            100% { box-shadow: 0 0 4px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05); border-color: rgba(16, 185, 129, 0.3); }
+        }
+
+        .khatmah-card.audio-active-khatmah {
+            animation: greenPulse 2.5s infinite ease-in-out !important;
+            border-color: rgba(16, 185, 129, 0.4) !important;
+        }
+
         /* زخرفة خلفية هندسية ناعمة جداً */
         .khatmah-card-pattern {
             position: absolute;
@@ -277,6 +289,12 @@
             color: var(--accent-gold);
         }
 
+        .khatmah-card.audio-active-khatmah .khatmah-card-badge {
+            background: rgba(16, 185, 129, 0.08) !important;
+            border-color: rgba(16, 185, 129, 0.25) !important;
+            color: var(--success) !important;
+        }
+
         /* نقطة الحالة الذهبية النابضة عند الاختيار */
         .khatmah-card-status-dot {
             width: 4.5px;
@@ -293,10 +311,17 @@
             animation: statusPulse 2s infinite ease-in-out;
         }
 
-        @keyframes statusPulse {
+        /* تحويل النقطة للأخضر النابض للختمة التي ينتمي إليها الصوت الفعلي */
+        @keyframes statusPulseGreen {
             0% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.3); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 1; }
             100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .khatmah-card.audio-active-khatmah .khatmah-card-status-dot {
+            background: var(--success) !important;
+            box-shadow: 0 0 8px var(--success) !important;
+            animation: statusPulseGreen 1.5s infinite ease-in-out !important;
         }
 
         /* نصوص الكارت المضغوطة */
@@ -322,6 +347,10 @@
 
         .khatmah-card.active .khatmah-card-title {
             color: var(--accent-gold);
+        }
+
+        .khatmah-card.audio-active-khatmah .khatmah-card-title {
+            color: var(--success) !important;
         }
 
         .khatmah-card-desc {
@@ -395,6 +424,38 @@
         html[dir="ltr"] .surah-row.active-row { 
             background: var(--glass-active); 
             border-left-color: var(--accent-gold);
+        }
+
+        /* فلاش أخضر ناعم لسطر السورة الجاري تشغيلها صوتياً حالياً */
+        @keyframes greenRowPulse {
+            0% { border-right-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
+            50% { border-right-color: rgba(16, 185, 129, 0.7); background: rgba(16, 185, 129, 0.04); }
+            100% { border-right-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
+        }
+        @keyframes greenRowPulseLTR {
+            0% { border-left-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
+            50% { border-left-color: rgba(16, 185, 129, 0.7); background: rgba(16, 185, 129, 0.04); }
+            100% { border-left-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
+        }
+
+        html[dir="rtl"] .surah-row.active-row.audio-playing-row {
+            animation: greenRowPulse 2.5s infinite ease-in-out !important;
+            border-right-color: rgba(16, 185, 129, 0.6) !important;
+        }
+
+        html[dir="ltr"] .surah-row.active-row.audio-playing-row {
+            animation: greenRowPulseLTR 2.5s infinite ease-in-out !important;
+            border-left-color: rgba(16, 185, 129, 0.6) !important;
+        }
+
+        .surah-row.active-row.audio-playing-row .surah-name {
+            color: var(--success) !important;
+        }
+
+        .surah-row.active-row.audio-playing-row .playing-list-btn {
+            color: var(--success) !important;
+            background: rgba(16, 185, 129, 0.08) !important;
+            border-color: rgba(16, 185, 129, 0.15) !important;
         }
 
         .surah-info { display: flex; align-items: center; gap: 12px; }
@@ -950,11 +1011,13 @@
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.playbackState = "playing";
             }
+            updatePlayerUI(true);
         };
         audioInstance.onpause = () => {
             if ('mediaSession' in navigator) {
                 navigator.mediaSession.playbackState = "paused";
             }
+            updatePlayerUI(false);
         };
 
         // جلب أسماء السور بناءً على اللغة الجارية
@@ -1017,7 +1080,8 @@
                 const surahDisplayName = getSurahName(surah);
 
                 const row = document.createElement('div');
-                row.className = `surah-row ${isCurrentPlaying ? 'active-row' : ''}`;
+                // نمنح السطر كلاس active-row للتمثيل العام وكلاس تفاعلي مخصص إذا كان الصوت يعمل الآن بالفعل
+                row.className = `surah-row ${isCurrentPlaying ? 'active-row' : ''} ${isCurrentPlaying && !audioInstance.paused ? 'audio-playing-row' : ''}`;
                 row.style.animationDelay = `${delay}s`;
                 row.setAttribute('data-id', surah.id);
                 
@@ -1048,16 +1112,18 @@
         // دالة التحديث الذكي والنشط للمسار الحالي لمنع الوميض والتعليق البصري
         function updateActiveRowUI() {
             const rows = document.querySelectorAll('.surah-row');
+            const isPlaying = !audioInstance.paused;
             rows.forEach(row => {
                 const id = parseInt(row.getAttribute('data-id'));
                 // السورة لا تظهر نشطة في القائمة إلا إذا كانت تطابق السورة والختمة التي انطلق منها الصوت حالياً
                 const isCurrent = (id === playingSurahId && playingKhatmahId === currentKhatmah);
                 
                 row.classList.toggle('active-row', isCurrent);
+                row.classList.toggle('audio-playing-row', isCurrent && isPlaying);
                 
                 const listPlayBtn = row.querySelector('.list-play-btn');
                 if (listPlayBtn) {
-                    if (isCurrent && !audioInstance.paused) {
+                    if (isCurrent && isPlaying) {
                         listPlayBtn.innerHTML = icons.pause;
                         listPlayBtn.classList.add('playing-list-btn');
                     } else {
@@ -1066,6 +1132,35 @@
                     }
                 }
             });
+
+            // تحديث بطاقات الختمات برمجياً لتفعيل الفلاش الأخضر للختمة الجارية تشغيلها حالياً في الخلفية
+            updateKhatmahCardsAudioIndicator();
+        }
+
+        // دالة التحكم في إضاءة بطاقة الختمة التي يعمل منها الصوت حالياً
+        function updateKhatmahCardsAudioIndicator() {
+            const card1 = document.getElementById('khatmah-1-btn');
+            const card2 = document.getElementById('khatmah-2-btn');
+            const isPlaying = !audioInstance.paused;
+
+            if (card1 && card2) {
+                card1.classList.remove('audio-active-khatmah');
+                card2.classList.remove('audio-active-khatmah');
+
+                // إضاءة فلاش أخضر للختمة النشطة صوتياً فقط عندما يعمل الصوت حالياً
+                if (playingKhatmahId === 1 && isPlaying) {
+                    card1.classList.add('audio-active-khatmah');
+                } else if (playingKhatmahId === 2 && isPlaying) {
+                    card2.classList.add('audio-active-khatmah');
+                }
+            }
+        }
+
+        function switchTab(tab) {
+            currentActiveTab = tab;
+            document.getElementById('tab-all').classList.toggle('active', tab === 'all');
+            document.getElementById('tab-fav').classList.toggle('active', tab === 'fav');
+            renderUI();
         }
 
         // تبديل الختمة المحددة بذكاء وسلاسة (يظل الصوت السابق يعمل بسلام دون انقطاع وتحديث النشاط البصري فقط)
@@ -1531,6 +1626,7 @@
             const timeLabel = document.getElementById('player-current-time');
             let lastPct = 0;
 
+            // حساب النسبة المئوية للسحب لضمان التوافق الكامل مع اتجاه اللمس
             function getPercentage(e) {
                 const rect = container.getBoundingClientRect();
                 let clientX;
