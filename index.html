@@ -30,7 +30,15 @@
             --glass-border: rgba(255, 255, 255, 0.03);
             --glass-active: rgba(212, 175, 55, 0.04);
             --danger: #f43f5e;
+            
+            /* ألوان متغيرة للتحكم بالتباين العالي للون الأخضر والحدود الفاصلة */
             --success: #10b981;
+            --success-rgb: 16, 185, 129;
+            --row-border: rgba(255, 255, 255, 0.025);
+            --border-active-opacity-min: 0.4;
+            --border-active-opacity-max: 0.8;
+            --bg-active-opacity-min: 0.015;
+            --bg-active-opacity-max: 0.04;
             
             /* ألوان مخصصة لبطاقات الختمة */
             --switcher-bg: rgba(0, 0, 0, 0.25);
@@ -51,7 +59,15 @@
             --glass-border: rgba(0, 0, 0, 0.06);
             --glass-active: rgba(178, 133, 0, 0.05);
             --danger: #e11d48;
+            
+            /* تباين عالي للأخضر النابض والحدود الفاصلة في الوضع النهاري الفاتح */
             --success: #059669;
+            --success-rgb: 5, 150, 105;
+            --row-border: rgba(0, 0, 0, 0.045);
+            --border-active-opacity-min: 0.6;
+            --border-active-opacity-max: 0.95;
+            --bg-active-opacity-min: 0.04;
+            --bg-active-opacity-max: 0.09;
             
             /* ألوان مخصصة لبطاقات الختمة في الوضع الفاتح */
             --switcher-bg: rgba(0, 0, 0, 0.03);
@@ -233,16 +249,25 @@
             transform: translateY(0);
         }
 
-        /* فلاش أخضر تفاعلي للختمة التي ينطلق منها الصوت الفعلي حالياً */
+        /* فلاش أخضر تفاعلي ذكي يتكيف ديناميكياً مع الوضعين الداكن والنهاري */
         @keyframes greenPulse {
-            0% { box-shadow: 0 0 4px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05); border-color: rgba(16, 185, 129, 0.3); }
-            50% { box-shadow: 0 0 12px rgba(16, 185, 129, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05); border-color: rgba(16, 185, 129, 0.6); }
-            100% { box-shadow: 0 0 4px rgba(16, 185, 129, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05); border-color: rgba(16, 185, 129, 0.3); }
+            0% { 
+                box-shadow: 0 0 4px rgba(var(--success-rgb), var(--border-active-opacity-min)), inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+                border-color: rgba(var(--success-rgb), var(--border-active-opacity-min)); 
+            }
+            50% { 
+                box-shadow: 0 0 12px rgba(var(--success-rgb), var(--border-active-opacity-max)), inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+                border-color: rgba(var(--success-rgb), var(--border-active-opacity-max)); 
+            }
+            100% { 
+                box-shadow: 0 0 4px rgba(var(--success-rgb), var(--border-active-opacity-min)), inset 0 1px 0 rgba(255, 255, 255, 0.05); 
+                border-color: rgba(var(--success-rgb), var(--border-active-opacity-min)); 
+            }
         }
 
         .khatmah-card.audio-active-khatmah {
             animation: greenPulse 2.5s infinite ease-in-out !important;
-            border-color: rgba(16, 185, 129, 0.4) !important;
+            border-color: rgba(var(--success-rgb), var(--border-active-opacity-max)) !important;
         }
 
         /* زخرفة خلفية هندسية ناعمة جداً */
@@ -290,8 +315,8 @@
         }
 
         .khatmah-card.audio-active-khatmah .khatmah-card-badge {
-            background: rgba(16, 185, 129, 0.08) !important;
-            border-color: rgba(16, 185, 129, 0.25) !important;
+            background: rgba(var(--success-rgb), 0.08) !important;
+            border-color: rgba(var(--success-rgb), 0.25) !important;
             color: var(--success) !important;
         }
 
@@ -382,7 +407,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 11px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.015);
+            border-bottom: 1px solid var(--row-border); /* تباين ناعم وعالي للخط الفاصل بالنهار والليل */
             transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
             animation: fadeInRow 0.3s ease forwards;
             opacity: 0;
@@ -397,14 +422,14 @@
             background: rgba(255, 255, 255, 0.015); 
         }
 
-        /* دعم الجهات المختلفة للحدود المذهبة التفاعلية */
+        /* دعم الجهات المختلفة للحدود المذهبة التفاعلية - زيادة العرض لـ 3px لزيادة الوضوح الفائق */
         html[dir="rtl"] .surah-row {
-            border-right: 2.5px solid transparent;
+            border-right: 3px solid transparent;
             border-left: none;
         }
 
         html[dir="ltr"] .surah-row {
-            border-left: 2.5px solid transparent;
+            border-left: 3px solid transparent;
             border-right: none;
         }
 
@@ -426,26 +451,44 @@
             border-left-color: var(--accent-gold);
         }
 
-        /* فلاش أخضر ناعم لسطر السورة الجاري تشغيلها صوتياً حالياً */
+        /* فلاش أخضر ناعم ومتكيف التباين كلياً مع الوضع النهاري والوضع الداكن لسطر السورة */
         @keyframes greenRowPulse {
-            0% { border-right-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
-            50% { border-right-color: rgba(16, 185, 129, 0.7); background: rgba(16, 185, 129, 0.04); }
-            100% { border-right-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
+            0% { 
+                border-right-color: rgba(var(--success-rgb), var(--border-active-opacity-min)); 
+                background: rgba(var(--success-rgb), var(--bg-active-opacity-min)); 
+            }
+            50% { 
+                border-right-color: rgba(var(--success-rgb), var(--border-active-opacity-max)); 
+                background: rgba(var(--success-rgb), var(--bg-active-opacity-max)); 
+            }
+            100% { 
+                border-right-color: rgba(var(--success-rgb), var(--border-active-opacity-min)); 
+                background: rgba(var(--success-rgb), var(--bg-active-opacity-min)); 
+            }
         }
         @keyframes greenRowPulseLTR {
-            0% { border-left-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
-            50% { border-left-color: rgba(16, 185, 129, 0.7); background: rgba(16, 185, 129, 0.04); }
-            100% { border-left-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.015); }
+            0% { 
+                border-left-color: rgba(var(--success-rgb), var(--border-active-opacity-min)); 
+                background: rgba(var(--success-rgb), var(--bg-active-opacity-min)); 
+            }
+            50% { 
+                border-left-color: rgba(var(--success-rgb), var(--border-active-opacity-max)); 
+                background: rgba(var(--success-rgb), var(--bg-active-opacity-max)); 
+            }
+            100% { 
+                border-left-color: rgba(var(--success-rgb), var(--border-active-opacity-min)); 
+                background: rgba(var(--success-rgb), var(--bg-active-opacity-min)); 
+            }
         }
 
         html[dir="rtl"] .surah-row.active-row.audio-playing-row {
             animation: greenRowPulse 2.5s infinite ease-in-out !important;
-            border-right-color: rgba(16, 185, 129, 0.6) !important;
+            border-right-color: rgba(var(--success-rgb), var(--border-active-opacity-max)) !important;
         }
 
         html[dir="ltr"] .surah-row.active-row.audio-playing-row {
             animation: greenRowPulseLTR 2.5s infinite ease-in-out !important;
-            border-left-color: rgba(16, 185, 129, 0.6) !important;
+            border-left-color: rgba(var(--success-rgb), var(--border-active-opacity-max)) !important;
         }
 
         .surah-row.active-row.audio-playing-row .surah-name {
@@ -454,8 +497,8 @@
 
         .surah-row.active-row.audio-playing-row .playing-list-btn {
             color: var(--success) !important;
-            background: rgba(16, 185, 129, 0.08) !important;
-            border-color: rgba(16, 185, 129, 0.15) !important;
+            background: rgba(var(--success-rgb), 0.08) !important;
+            border-color: rgba(var(--success-rgb), 0.15) !important;
         }
 
         .surah-info { display: flex; align-items: center; gap: 12px; }
