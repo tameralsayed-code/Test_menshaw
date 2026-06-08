@@ -1323,7 +1323,7 @@
             }
         }
 
-        // دالة التحميل المباشر مع تجاوز قيود CORS لروابط Archive.org عبر بروكسي وسيط مجاني ومتعدد
+        // دالة التحميل المباشر الآمنة والمتطورة لتجاوز قيود CORS على السيرفرات الحقيقية
         async function downloadAudio(url, filename, buttonElement) {
             if (buttonElement) {
                 buttonElement.style.pointerEvents = 'none';
@@ -1343,36 +1343,46 @@
             let response;
             let success = false;
 
-            // 1. المحاولة الأولى: الاتصال المباشر بالخادم
+            // 1. المحاولة الأولى: الاتصال المباشر بالخادم (تنجح للختمة الثانية وتفشل للأولى بسبب Archive.org)
             try {
                 response = await fetch(url);
                 if (!response.ok) throw new Error('Direct fetch failed');
                 success = true;
             } catch (firstError) {
-                console.warn('فشل التحميل المباشر، جاري التجربة عبر البروكسي الأول...', firstError);
+                console.warn('فشل التحميل المباشر، جاري محاولة جلب الملف عبر بروكسي التنزيل المفتوح (KillCors)...', firstError);
                 
-                // 2. المحاولة الثانية: استخدام البروكسي السريع corsproxy.io لتجاوز الحماية [1]
+                // 2. المحاولة الثانية: استخدام البروكسي القوي والسريع proxy.killcors.com المفتوح للاستخدام على السيرفرات الحقيقية
                 try {
-                    const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(url)}`;
+                    const proxyUrl = `https://proxy.killcors.com/?url=${encodeURIComponent(url)}`;
                     response = await fetch(proxyUrl);
-                    if (!response.ok) throw new Error('First proxy failed');
+                    if (!response.ok) throw new Error('KillCors proxy failed');
                     success = true;
                 } catch (proxyError) {
-                    console.warn('فشل البروكسي الأول، جاري المحاولة عبر البروكسي البديل...', proxyError);
+                    console.warn('فشل البروكسي الأول، جاري المحاولة عبر البروكسي الإقليمي (cors.x2u.in)...', proxyError);
                     
-                    // 3. المحاولة الثالثة: استخدام البروكسي الاحتياطي allorigins.win في حال توقف الأول
+                    // 3. المحاولة الثالثة: البروكسي cors.x2u.in المخصص لتخطي الحجب وحظر دول الشرق الأوسط
                     try {
-                        const backupProxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                        response = await fetch(backupProxyUrl);
-                        if (!response.ok) throw new Error('Backup proxy failed');
+                        const regionalProxyUrl = `https://cors.x2u.in/${url}`;
+                        response = await fetch(regionalProxyUrl);
+                        if (!response.ok) throw new Error('Regional proxy failed');
                         success = true;
                     } catch (backupError) {
-                        console.error('فشلت جميع محاولات الاتصال المباشر والوسيط:', backupError);
+                        console.warn('فشل البروكسي الإقليمي، جاري المحاولة عبر AllOrigins كجدار حماية أخير...', backupError);
+                        
+                        // 4. المحاولة الرابعة: جدار الحماية الأخير AllOrigins
+                        try {
+                            const lastResortUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                            response = await fetch(lastResortUrl);
+                            if (!response.ok) throw new Error('AllOrigins failed');
+                            success = true;
+                        } catch (allOriginsError) {
+                            console.error('فشلت جميع محاولات الاتصال المباشر والوسيط للتحميل:', allOriginsError);
+                        }
                     }
                 }
             }
 
-            // إذا نجح الاتصال عبر أي من الطرق السابقة، نبدأ بقراءة وحفظ الملف كـ Blob [1]
+            // إذا نجحت أي من محاولات البروكسي في جلب دفق البيانات، نبدأ بحفظ الملف فوراً
             if (success && response) {
                 try {
                     const contentLength = response.headers.get('content-length');
@@ -1413,11 +1423,10 @@
                     showToast(i18n[currentLang].toastDownloadSuccess, 3000, true);
                     
                 } catch (readError) {
-                    console.error('خطأ أثناء معالجة تدفق بيانات الملف الصوتي:', readError);
+                    console.error('خطأ أثناء كتابة وحفظ تدفق ملف الصوت:', readError);
                     fallbackRedirect(url);
                 }
             } else {
-                // إذا تعطلت خدمات البروكسي بالكامل، يتم التحويل لصفحة المشغل الأصلية كحل أخير
                 fallbackRedirect(url);
             }
 
