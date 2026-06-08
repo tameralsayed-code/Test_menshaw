@@ -339,79 +339,203 @@
             opacity: 0.8;
         }
 
-        /* قائمة السور الموحدة */
+        /* قائمة السور الموحدة - تصميم ببطاقات عائمة متقاربة */
         .surah-list-container {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            display: flex;
+            flex-direction: column;
+            gap: 5px; /* تقليص المسافة الهندسية بين البطاقات لتماسك احترافي */
         }
 
         .surah-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 11px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.015);
-            transition: all 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
-            animation: fadeInRow 0.3s ease forwards;
+            padding: 10px 14px; /* ضغط الارتفاع الداخلي بشكل شيك ومتناسق */
+            background: rgba(6, 36, 28, 0.15); /* خلفية زمردية دافئة ناعمة */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(16, 185, 129, 0.16); /* حدود ملونة متناسقة باللون الزمردي الإسلامي */
+            border-radius: 12px;
+            transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInRow 0.35s ease forwards;
             opacity: 0;
-            transform: translateY(5px);
+            transform: translateY(8px);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-        @keyframes fadeInRow { to { opacity: 1; transform: translateY(0); } }
-        .surah-row:last-child { border-bottom: none; }
+        @keyframes fadeInRow { 
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            } 
+        }
         
+        /* تأثير تمرير الفأرة الراقي للبطاقة */
         .surah-row:hover { 
-            background: rgba(255, 255, 255, 0.015); 
+            background: rgba(255, 255, 255, 0.035); 
+            border-color: rgba(212, 175, 55, 0.3); /* الانتقال التدريجي للذهب عند التمرير */
+            transform: translateY(-1.5px);
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.08);
         }
 
-        /* دعم الجهات المختلفة للحدود المذهبة التفاعلية */
-        html[dir="rtl"] .surah-row {
-            border-right: 2.5px solid transparent;
-            border-left: none;
+        /* خط جانبي مذهب ينبثق عند تنشيط السورة أو تصفحها */
+        .surah-row::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: transparent;
+            transition: all 0.25s ease;
+        }
+        
+        html[dir="rtl"] .surah-row::before {
+            right: 0;
+            border-radius: 0 12px 12px 0;
+        }
+        
+        html[dir="ltr"] .surah-row::before {
+            left: 0;
+            border-radius: 12px 0 0 12px;
         }
 
-        html[dir="ltr"] .surah-row {
-            border-left: 2.5px solid transparent;
-            border-right: none;
+        .surah-row:hover::before {
+            background: rgba(212, 175, 55, 0.3);
         }
 
-        html[dir="rtl"] .surah-row:hover {
-            border-right-color: rgba(212, 175, 55, 0.15);
+        .surah-row.active-row::before {
+            background: var(--accent-gold);
         }
 
-        html[dir="ltr"] .surah-row:hover {
-            border-left-color: rgba(212, 175, 55, 0.15);
-        }
-
-        html[dir="rtl"] .surah-row.active-row { 
-            background: var(--glass-active); 
-            border-right-color: var(--accent-gold);
-        }
-
+        /* التنسيق للبطاقة النشطة بالكامل */
+        html[dir="rtl"] .surah-row.active-row,
         html[dir="ltr"] .surah-row.active-row { 
             background: var(--glass-active); 
-            border-left-color: var(--accent-gold);
+            border-color: rgba(212, 175, 55, 0.4); /* تداخل مذهب رائع عند التنشيط */
+            box-shadow: 0 4px 16px rgba(212, 175, 55, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.02);
         }
 
-        .surah-info { display: flex; align-items: center; gap: 12px; }
+        /* تكييف السور مع المظهر الفاتح */
+        :root.light-theme .surah-row {
+            background: rgba(216, 226, 222, 0.35);
+            border-color: rgba(5, 150, 105, 0.14); /* حدود زمردية هادئة تناسب ورق المصاحف */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.01);
+        }
+
+        :root.light-theme .surah-row:hover {
+            background: #ffffff;
+            border-color: rgba(178, 133, 0, 0.25);
+            box-shadow: 0 4px 10px rgba(5, 150, 105, 0.05);
+        }
+
+        :root.light-theme .surah-row.active-row {
+            background: rgba(178, 133, 0, 0.03);
+            border-color: rgba(178, 133, 0, 0.35);
+            box-shadow: 0 3px 10px rgba(178, 133, 0, 0.04);
+        }
+
+        .surah-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 14px; 
+        }
         
-        html[dir="rtl"] .surah-number { font-size: 0.78rem; font-weight: 400; color: var(--text-muted); min-width: 28px; text-align: right; }
-        html[dir="ltr"] .surah-number { font-size: 0.78rem; font-weight: 400; color: var(--text-muted); min-width: 28px; text-align: left; }
+        /* تنسيق رقم السورة مع حركة مبتكرة عند التمرير */
+        .surah-number { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            font-size: 0.72rem; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            position: relative;
+            transition: all 0.28s ease;
+            flex-shrink: 0;
+            box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .surah-number::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            right: 2px;
+            bottom: 2px;
+            border: 1px dashed var(--glass-border);
+            border-radius: 50%;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease;
+        }
+
+        /* ابتكار: حركة دوران ناعمة للإطار المتقطع عند تمرير الفأرة فوق البطاقة */
+        .surah-row:hover .surah-number::after {
+            transform: rotate(180deg);
+            border-color: var(--accent-gold);
+        }
+
+        /* تحويل الرقم للتوهج الذهبي في السورة الفعالة */
+        .surah-row.active-row .surah-number {
+            color: var(--accent-gold);
+            border-color: rgba(212, 175, 55, 0.4);
+            background: rgba(212, 175, 55, 0.06);
+            box-shadow: inset 0 0 4px rgba(212, 175, 55, 0.05);
+        }
+
+        .surah-row.active-row .surah-number::after {
+            border-color: rgba(212, 175, 55, 0.25);
+        }
+
+        /* مواءمة تفاصيل الأرقام للوضع الفاتح */
+        :root.light-theme .surah-number {
+            background: rgba(0, 0, 0, 0.02);
+            border-color: rgba(0, 0, 0, 0.06);
+            box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.05);
+        }
+
+        :root.light-theme .surah-number::after {
+            border-color: rgba(0, 0, 0, 0.04);
+        }
+
+        :root.light-theme .surah-row.active-row .surah-number {
+            color: var(--accent-gold);
+            border-color: rgba(178, 133, 0, 0.4);
+            background: rgba(178, 133, 0, 0.04);
+        }
+
+        :root.light-theme .surah-row.active-row .surah-number::after {
+            border-color: rgba(178, 133, 0, 0.2);
+        }
+
+        html[dir="rtl"] .surah-number { text-align: center; }
+        html[dir="ltr"] .surah-number { text-align: center; }
         
-        /* تقليص حجم خط أسماء السور لمظهر مدمج وأكثر رُقياً */
+        /* أسماء السور */
         .surah-name { 
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             font-weight: 600; 
             letter-spacing: 0.1px; 
+            color: var(--text-main);
+            transition: color 0.25s ease;
+        }
+
+        .surah-row.active-row .surah-name {
+            color: var(--accent-gold);
+            font-weight: 700;
         }
 
         .actions { display: flex; gap: 6px; }
 
-        /* أزرار الإجراءات بجانب السور */
+        /* أزرار الإجراءات بجانب السور المحدثة */
         .icon-btn {
             background: transparent;
             border: 1px solid transparent;
@@ -419,14 +543,20 @@
             width: 32px; height: 32px;
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.2s;
+            cursor: pointer; transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
             text-decoration: none;
         }
 
         .icon-btn:hover {
             color: var(--text-main);
-            background: rgba(255, 255, 255, 0.03);
-            border-color: var(--glass-border);
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(212, 175, 55, 0.15);
+            transform: scale(1.05);
+        }
+
+        :root.light-theme .icon-btn:hover {
+            background: rgba(0, 0, 0, 0.03);
+            border-color: rgba(178, 133, 0, 0.15);
         }
 
         .icon-btn.fav-btn.is-fav { color: var(--accent-gold); }
