@@ -173,5 +173,400 @@
     "id": 35,
     "name": "فاطر",
     "url": "https://archive.org/download/elmenshawy-quran1-mp3/035_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%81%D8%A7%D8%B7%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 36,
+    "name": "يس",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/036_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%8A%D8%B3%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 37,
+    "name": "الصافات",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/037_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B5%D8%A7%D9%81%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 38,
+    "name": "ص",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/038_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%B5%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 39,
+    "name": "الزمر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/039_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B2%D9%85%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 40,
+    "name": "غافر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/040_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%BA%D8%A7%D9%81%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 41,
+    "name": "فصلت",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/041_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%81%D8%B5%D9%84%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 42,
+    "name": "الشورى",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/042_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B4%D9%88%D8%B1%D9%89%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 43,
+    "name": "الزخرف",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/043_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B2%D8%AE%D8%B1%D9%81%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 44,
+    "name": "الدخان",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/044_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AF%D8%AE%D8%A7%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 45,
+    "name": "الجاثية",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/045_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AC%D8%A7%D8%AB%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 46,
+    "name": "الأحقاف",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/046_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AD%D9%82%D8%A7%D9%81%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20.m4a"
+  },
+  {
+    "id": 47,
+    "name": "محمد",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/047_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%85%D8%AD%D9%85%D8%AF%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 48,
+    "name": "الفتح",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/048_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%81%D8%AA%D8%AD%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 49,
+    "name": "الحجرات",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/049_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D8%AC%D8%B1%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 50,
+    "name": "ق",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/050_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%82%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 51,
+    "name": "الذاريات",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/051_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B0%D8%A7%D8%B1%D9%8A%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 52,
+    "name": "الطور",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/052_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B7%D9%88%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 53,
+    "name": "النجم",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/053_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%AC%D9%85%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 54,
+    "name": "القمر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/054_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%82%D9%85%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 55,
+    "name": "الرحمن",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/055_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 56,
+    "name": "الواقعة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/056_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%88%D8%A7%D9%82%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 57,
+    "name": "الحديد",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/057_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D8%AF%D9%8A%D8%AF%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 58,
+    "name": "المجادلة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/058_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%AC%D8%A7%D8%AF%D9%84%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 59,
+    "name": "الحشر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/059_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D8%B4%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 60,
+    "name": "الممتحنة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/060_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D9%85%D8%AA%D8%AD%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 61,
+    "name": "الصف",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/061_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B5%D9%81%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 62,
+    "name": "الجمعة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/062_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 63,
+    "name": "المنافقون",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/063_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%A7%D9%81%D9%82%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 64,
+    "name": "التغابن",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/064_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D8%BA%D8%A7%D8%A8%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 65,
+    "name": "الطلاق",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/065_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B7%D9%84%D8%A7%D9%82%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 66,
+    "name": "التحريم",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/066_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D8%AD%D8%B1%D9%8A%D9%85%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 67,
+    "name": "الملك",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/067_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D9%84%D9%83%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 68,
+    "name": "القلم",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/068_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%82%D9%84%D9%85%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 69,
+    "name": "الحاقة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/069_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AD%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 70,
+    "name": "المعارج",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/070_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B1%D8%AC%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 71,
+    "name": "نوح",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/071_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%86%D9%88%D8%AD%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 72,
+    "name": "الجن",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/072_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AC%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 73,
+    "name": "المزمل",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/073_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%B2%D9%85%D9%84%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 74,
+    "name": "المدثر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/074_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%AF%D8%AB%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 75,
+    "name": "القيامة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/075_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%82%D9%8A%D8%A7%D9%85%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 76,
+    "name": "الإنسان",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/076_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A5%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 77,
+    "name": "المرسلات",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/077_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%B1%D8%B3%D9%84%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 78,
+    "name": "النبأ",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/078_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%A8%D8%A3%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 79,
+    "name": "النازعات",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/079_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%A7%D8%B2%D8%B9%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 80,
+    "name": "عبس",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/080_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%B9%D8%A8%D8%B3%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 81,
+    "name": "التكوير",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/081_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D9%83%D9%88%D9%8A%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 82,
+    "name": "الانفطار",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/082_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A7%D9%86%D9%81%D8%B7%D8%A7%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 83,
+    "name": "المطففين",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/083_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%B7%D9%81%D9%81%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 84,
+    "name": "الانشقاق",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/084_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A7%D9%86%D8%B4%D9%82%D8%A7%D9%82%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 85,
+    "name": "البروج",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/085_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A8%D8%B1%D9%88%D8%AC%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 86,
+    "name": "الطارق",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/086_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B7%D8%A7%D8%B1%D9%82%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 87,
+    "name": "الأعلى",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/087_%D8%B3%D9%88%D8%B1%D8%A9%D8%A7%D9%84%D8%A7%D8%B9%D9%84%D9%89%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 88,
+    "name": "الغاشية",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/088_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%BA%D8%A7%D8%B4%D9%8A%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 89,
+    "name": "الفجر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/089_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%81%D8%AC%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 90,
+    "name": "البلد",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/090_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A8%D9%84%D8%AF%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 91,
+    "name": "الشمس",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/091_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B4%D9%85%D8%B3%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 92,
+    "name": "الليل",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/092_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%84%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 93,
+    "name": "الضحى",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/093_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B6%D8%AD%D9%89%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 94,
+    "name": "الشرح",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/094_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B4%D8%B1%D8%AD%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 95,
+    "name": "التين",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/095_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D9%8A%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 96,
+    "name": "العلق",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/096_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B9%D9%84%D9%82%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 97,
+    "name": "القدر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/097_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%82%D8%AF%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 98,
+    "name": "البينة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/098_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A8%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 99,
+    "name": "الزلزلة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/099_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B2%D9%84%D8%B2%D9%84%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 100,
+    "name": "العاديات",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/100_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B9%D8%A7%D8%AF%D9%8A%D8%A7%D8%AA%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 101,
+    "name": "القارعة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/101%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%82%D8%A7%D8%B1%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 102,
+    "name": "التكاثر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/102_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%AA%D9%83%D8%A7%D8%AB%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 103,
+    "name": "العصر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/103_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B5%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 104,
+    "name": "الهمزة",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/104_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%87%D9%85%D8%B2%D8%A9%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 105,
+    "name": "الفيل",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/105_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%81%D9%8A%D9%84%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 106,
+    "name": "قريش",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/106_%D8%B3%D9%88%D8%B1%D8%A9%20%D9%82%D8%B1%D9%8A%D8%B4%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 107,
+    "name": "الماعون",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/107_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%A7%D8%B9%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 108,
+    "name": "الكوثر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/108_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%83%D9%88%D8%AB%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 109,
+    "name": "الكافرون",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/109_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%83%D8%A7%D9%81%D8%B1%D9%88%D9%86%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 110,
+    "name": "النصر",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/110_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%B5%D8%B1%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 111,
+    "name": "المسد",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/111_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%85%D8%B3%D8%AF%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 112,
+    "name": "الإخلاص",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/112_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D8%A7%D8%AE%D9%84%D8%A7%D8%B5%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 113,
+    "name": "الفلق",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/113_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%81%D9%84%D9%82%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
+  },
+  {
+    "id": 114,
+    "name": "الناس",
+    "url": "https://archive.org/download/elmenshawy-quran1-mp3/114_%D8%B3%D9%88%D8%B1%D8%A9%20%D8%A7%D9%84%D9%86%D8%A7%D8%B3%20%D8%A7%D9%84%D9%85%D9%86%D8%B4%D8%A7%D9%88%D9%8A%20%D8%A7%D9%84%D8%A7%D8%B0%D8%A7%D8%B9%D8%A9%20%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A%D8%A9.m4a"
   }
 ]
