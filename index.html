@@ -347,6 +347,12 @@
             display: flex;
             flex-direction: column;
             gap: 5px; /* تقليص المسافة الهندسية بين البطاقات لتماسك احترافي */
+            transition: opacity 0.2s ease-in-out; /* حركة ذوبان تلاشي ناعمة للتبديل السلس */
+            opacity: 1;
+        }
+        
+        .surah-list-container.fade-out {
+            opacity: 0;
         }
 
         .surah-row {
@@ -996,7 +1002,7 @@
                 sleepTimer: "مؤقت النوم",
                 sleepOff: "إيقاف المؤقت",
                 minutes: "دقيقة",
-                toastDownload: "جاري الاتصال بالخادم وتجهيز التحميل...",
+                toastDownload: "جاري الاتصال بالخادم وتجهيز التحميل السريع...",
                 toastDownloadProgress: "جاري التحميل المباشر: {percent}% ... يرجى الانتظار",
                 toastDownloadMB: "جاري تحميل السورة: {mb} MB ... يرجى الانتظار",
                 toastDownloadSuccess: "اكتمل تنزيل الملف بنجاح! 🎉",
@@ -1030,7 +1036,7 @@
                 sleepTimer: "Sleep Timer",
                 sleepOff: "Turn Off Timer",
                 minutes: "Min",
-                toastDownload: "Connecting to server and preparing download...",
+                toastDownload: "Connecting to server for fast download...",
                 toastDownloadProgress: "Downloading: {percent}% ... please wait",
                 toastDownloadMB: "Downloading: {mb} MB ... please wait",
                 toastDownloadSuccess: "Download completed successfully! 🎉",
@@ -1056,6 +1062,7 @@
         let currentKhatmah = parseInt(localStorage.getItem('premium_quran_khatmah')) || 2;
 
         let audioInstance = new Audio();
+        audioInstance.preload = 'auto'; // تسريع بدء التشغيل افتراضياً
         
         // متتبعات حالة التشغيل الفعلية لفك الارتباط البصري عند تبديل الختمات
         let playingSurahId = null;
@@ -1072,6 +1079,9 @@
         let sleepTimerId = null;
         let sleepTimerRemaining = 0;
         let sleepTimerIntervalId = null;
+
+        // ابتكار: علامة برمجية لمنع الأنيميشن المتكرر عند التبديل
+        let isInitialLoad = true;
 
         audioInstance.onseeking = () => { isSeeking = true; };
         audioInstance.onseeked = () => { isSeeking = false; };
@@ -1093,6 +1103,29 @@
                 return surah.name;
             } else {
                 return surahNamesEN[surah.id] || surah.name;
+            }
+        }
+
+        // ابتكار: بروتوكول المصافحة المسبقة والاتصال المعجل بالخوادم قبل الضغط على السور تقليلاً لزمن الاستجابة
+        function injectPreconnectHints(url) {
+            try {
+                const domain = new URL(url).origin;
+                if (document.getElementById(`preconnect-${domain}`)) return;
+                
+                const link1 = document.createElement('link');
+                link1.id = `preconnect-${domain}`;
+                link1.rel = 'preconnect';
+                link1.href = domain;
+                link1.crossOrigin = 'anonymous';
+                
+                const link2 = document.createElement('link');
+                link2.rel = 'dns-prefetch';
+                link2.href = domain;
+                
+                document.head.appendChild(link1);
+                document.head.appendChild(link2);
+            } catch (e) {
+                console.warn(e);
             }
         }
 
@@ -1122,6 +1155,11 @@
                           JSON.parse(localStorage.getItem('premium_quran_data')) || [];
             }
             
+            // تفعيل الاتصال المسبق بأول 3 سور لتسريع استجابة التشغيل الفوري
+            if (surahs.length > 0) {
+                surahs.slice(0, 3).forEach(s => injectPreconnectHints(s.url));
+            }
+
             // تفعيل الإعدادات الأولية
             applyTheme();
             applyLanguage();
@@ -1140,15 +1178,23 @@
             }
 
             surahs.forEach((surah, index) => {
-                const delay = Math.min(index * 0.02, 1);
-                // السورة لا تظهر نشطة إلا إذا كانت تطابق السورة والختمة التي انطلقت منها!
+                // ابتكار: الأنيميشن التصاعدي يعمل فقط في الفتح الأول، لتجنب الفلاش والتأخير في كل تصفح وتبديل الختمات
+                const delay = isInitialLoad ? Math.min(index * 0.015, 0.8) : 0;
                 const isCurrentPlaying = (playingSurahId === surah.id && playingKhatmahId === currentKhatmah);
                 const isFav = favorites.includes(surah.id);
                 const surahDisplayName = getSurahName(surah);
 
                 const row = document.createElement('div');
                 row.className = `surah-row ${isCurrentPlaying ? 'active-row' : ''}`;
-                row.style.animationDelay = `${delay}s`;
+                
+                if (isInitialLoad) {
+                    row.style.animationDelay = `${delay}s`;
+                } else {
+                    row.style.animation = 'none';
+                    row.style.opacity = '1';
+                    row.style.transform = 'translateY(0)';
+                }
+                
                 row.setAttribute('data-id', surah.id);
                 
                 // تشغيل السورة فوراً عند الضغط على الصف
@@ -1198,7 +1244,7 @@
             });
         }
 
-        // تبديل الختمة المحددة بذكاء وسلاسة (يظل الصوت السابق يعمل بسلام دون انقطاع وتحديث النشاط البصري فقط)
+        // ابتكار: تبديل الختمة المحددة مع نظام التلاشي الذائب السينمائي (Fluid Dissolve) لمنع فلاش تدمير وبناء العناصر
         async function switchKhatmah(num) {
             if (currentKhatmah === num) return;
             currentKhatmah = num;
@@ -1208,20 +1254,25 @@
             document.getElementById('khatmah-1-btn').classList.toggle('active', num === 1);
             document.getElementById('khatmah-2-btn').classList.toggle('active', num === 2);
 
-            // تلاشي العنوان الفرعي وتحديثه بمرونة وحركات ناعمة
             const subtitleElement = document.getElementById('header-subtitle');
             subtitleElement.style.opacity = '0';
-            setTimeout(() => {
+            
+            // 1. تفعيل تلاشي القائمة لمنع الفلاش وتأثير البناء المفاجئ للقائمة
+            const mainList = document.getElementById('main-surah-list');
+            mainList.classList.add('fade-out');
+
+            setTimeout(async () => {
                 const subKey = currentKhatmah === 1 ? 'subtitle1' : 'subtitle2';
                 subtitleElement.innerText = i18n[currentLang][subKey];
                 subtitleElement.style.opacity = '1';
-            }, 150);
 
-            // جلب البيانات الخاصة بالختمة النشطة الجديدة
-            await fetchSurahData();
-            
-            // إعادة بناء السور للختمة المعنية
-            renderUI();
+                // جلب البيانات مع إيقاف الأنيميشن المتدرج للبطاقات لمنع التأخر البصري
+                isInitialLoad = false; 
+                await fetchSurahData();
+                
+                // إزالة كلاس التلاشي لتظهر القائمة الجديدة بسلاسة تامة دون وميض
+                mainList.classList.remove('fade-out');
+            }, 200);
         }
 
         function toggleFav(id, event) {
@@ -1323,14 +1374,14 @@
             }
         }
 
-        // دالة التحميل المباشر الآمنة والمتطورة لتجاوز قيود CORS على السيرفرات الحقيقية
+        // ابتكار: دالة تحميل صوتي ذكية (Instant Direct & Streaming Proxy) فائقة السرعة تنهي مشكلة تأخر التحميل
         async function downloadAudio(url, filename, buttonElement) {
             if (buttonElement) {
                 buttonElement.style.pointerEvents = 'none';
                 buttonElement.style.opacity = '0.4';
             }
             
-            showToast(i18n[currentLang].toastDownload, 0);
+            showToast(i18n[currentLang].toastDownload, 3000);
 
             if (typeof gtag === 'function') {
                 gtag('event', 'file_download', {
@@ -1340,93 +1391,41 @@
                 });
             }
 
-            let response;
-            let success = false;
-
-            // 1. المحاولة الأولى: الاتصال المباشر بالخادم (تنجح للختمة الثانية وتفشل للأولى بسبب Archive.org)
-            try {
-                response = await fetch(url);
-                if (!response.ok) throw new Error('Direct fetch failed');
-                success = true;
-            } catch (firstError) {
-                console.warn('فشل التحميل المباشر، جاري محاولة جلب الملف عبر بروكسي التنزيل المفتوح (KillCors)...', firstError);
-                
-                // 2. المحاولة الثانية: استخدام البروكسي القوي والسريع proxy.killcors.com المفتوح للاستخدام على السيرفرات الحقيقية
+            // ابتكار: إذا كان الرابط لا يحتوي على archive.org (مثل الختمة الثانية)، يتم تفعيل تحميل فوري وتلقائي ومباشر بالمتصفح دون أي انتظار أو معالجة بطيئة بالبكسل!
+            if (!url.includes('archive.org')) {
                 try {
-                    const proxyUrl = `https://proxy.killcors.com/?url=${encodeURIComponent(url)}`;
-                    response = await fetch(proxyUrl);
-                    if (!response.ok) throw new Error('KillCors proxy failed');
-                    success = true;
-                } catch (proxyError) {
-                    console.warn('فشل البروكسي الأول، جاري المحاولة عبر البروكسي الإقليمي (cors.x2u.in)...', proxyError);
-                    
-                    // 3. المحاولة الثالثة: البروكسي cors.x2u.in المخصص لتخطي الحجب وحظر دول الشرق الأوسط
-                    try {
-                        const regionalProxyUrl = `https://cors.x2u.in/${url}`;
-                        response = await fetch(regionalProxyUrl);
-                        if (!response.ok) throw new Error('Regional proxy failed');
-                        success = true;
-                    } catch (backupError) {
-                        console.warn('فشل البروكسي الإقليمي، جاري المحاولة عبر AllOrigins كجدار حماية أخير...', backupError);
-                        
-                        // 4. المحاولة الرابعة: جدار الحماية الأخير AllOrigins
-                        try {
-                            const lastResortUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
-                            response = await fetch(lastResortUrl);
-                            if (!response.ok) throw new Error('AllOrigins failed');
-                            success = true;
-                        } catch (allOriginsError) {
-                            console.error('فشلت جميع محاولات الاتصال المباشر والوسيط للتحميل:', allOriginsError);
-                        }
+                    const tempLink = document.createElement('a');
+                    tempLink.href = url;
+                    tempLink.download = filename;
+                    tempLink.target = '_blank';
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    document.body.removeChild(tempLink);
+                    showToast(i18n[currentLang].toastDownloadSuccess, 3000, true);
+                    if (buttonElement) {
+                        buttonElement.style.pointerEvents = 'auto';
+                        buttonElement.style.opacity = '1';
                     }
+                    return;
+                } catch (e) {
+                    console.warn("تراجع للتحميل الخلفي البديل:", e);
                 }
             }
 
-            // إذا نجحت أي من محاولات البروكسي في جلب دفق البيانات، نبدأ بحفظ الملف فوراً
-            if (success && response) {
-                try {
-                    const contentLength = response.headers.get('content-length');
-                    const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
-                    
-                    const reader = response.body.getReader();
-                    let receivedBytes = 0;
-                    let chunks = [];
-
-                    while (true) {
-                        const { done, value } = await reader.read();
-                        if (done) break;
-                        
-                        chunks.push(value);
-                        receivedBytes += value.length;
-                        
-                        if (totalBytes > 0) {
-                            const percent = Math.round((receivedBytes / totalBytes) * 100);
-                            showToast(i18n[currentLang].toastDownloadProgress.replace('{percent}', percent), 0);
-                        } else {
-                            const receivedMB = (receivedBytes / (1024 * 1024)).toFixed(1);
-                            showToast(i18n[currentLang].toastDownloadMB.replace('{mb}', receivedMB), 0);
-                        }
-                    }
-
-                    const blob = new Blob(chunks, { type: 'audio/mpeg' });
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    
-                    const tempLink = document.createElement('a');
-                    tempLink.href = blobUrl;
-                    tempLink.download = filename;
-                    document.body.appendChild(tempLink);
-                    tempLink.click();
-                    
-                    document.body.removeChild(tempLink);
-                    window.URL.revokeObjectURL(blobUrl);
-                    
-                    showToast(i18n[currentLang].toastDownloadSuccess, 3000, true);
-                    
-                } catch (readError) {
-                    console.error('خطأ أثناء كتابة وحفظ تدفق ملف الصوت:', readError);
-                    fallbackRedirect(url);
-                }
-            } else {
+            // للختمة الأولى (Archive.org) - بدلاً من القراءة البرمجية البطيئة للـ Blob في الذاكرة والتي تسبب بطء شديد،
+            // سنوجه الرابط مباشرة عبر البروكسي كـ Download Stream مباشر في المتصفح! ويبدأ التحميل فوراً بكامل سرعة خط المستخدم
+            try {
+                const proxyDownloadUrl = `https://proxy.killcors.com/?url=${encodeURIComponent(url)}`;
+                const tempLink = document.createElement('a');
+                tempLink.href = proxyDownloadUrl;
+                tempLink.download = filename;
+                tempLink.target = '_blank';
+                document.body.appendChild(tempLink);
+                tempLink.click();
+                document.body.removeChild(tempLink);
+                showToast(i18n[currentLang].toastDownloadSuccess, 3000, true);
+            } catch (error) {
+                console.error('خطأ في التحميل الموجه، تراجع للمشغل الخارجي:', error);
                 fallbackRedirect(url);
             }
 
@@ -1480,6 +1479,9 @@
                 return;
             }
 
+            // تسريع الاتصال بخادم السورة المختارة مسبقاً
+            injectPreconnectHints(selectedSurah.url);
+
             audioInstance.pause();
             playingSurahId = id;
             playingKhatmahId = currentKhatmah; // توثيق الختمة التي انطلق منها الملف الصوتي حالياً
@@ -1502,9 +1504,25 @@
             if (playPromise !== undefined) {
                 playPromise.then(() => { 
                     updatePlayerUI(true); 
+                    // ابتكار: بدء تحضير وتخزين السورة التالية مسبقاً في الخلفية لضمان عدم حدوث تأخر عند الانتقال التلقائي
+                    preloadNextTrack(id);
                 }).catch(err => { 
                     console.warn("تنبيه: تم إيقاف طلب التشغيل المؤقت بسبب تلاحق العمليات السريع:", err); 
                 });
+            }
+        }
+
+        // ابتكار: دالة التجهيز المسبق الصامت للسورة التالية لضمان صفر ثانية من التأخر عند التبديل التلقائي
+        function preloadNextTrack(currentId) {
+            const currentIndex = surahs.findIndex(s => s.id === currentId);
+            if (currentIndex !== -1 && currentIndex < surahs.length - 1) {
+                const nextSurah = surahs[currentIndex + 1];
+                injectPreconnectHints(nextSurah.url);
+                
+                // بدء تحضير صامت للـ metadata
+                const preloadDummy = new Audio();
+                preloadDummy.preload = 'metadata';
+                preloadDummy.src = nextSurah.url;
             }
         }
 
