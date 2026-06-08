@@ -1323,7 +1323,7 @@
             }
         }
 
-        // دالة التحميل المباشر مع دعم حساب النسب المئوية المباشر وتفادي مشاكل CORS
+        // دالة التحميل المباشر مع تجاوز قيود CORS لروابط Archive.org عبر بروكسي وسيط مجاني ومتعدد
         async function downloadAudio(url, filename, buttonElement) {
             if (buttonElement) {
                 buttonElement.style.pointerEvents = 'none';
@@ -1340,64 +1340,104 @@
                 });
             }
 
+            let response;
+            let success = false;
+
+            // 1. المحاولة الأولى: الاتصال المباشر بالخادم
             try {
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('فشل التحميل من الخادم');
-
-                const contentLength = response.headers.get('content-length');
-                const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
+                response = await fetch(url);
+                if (!response.ok) throw new Error('Direct fetch failed');
+                success = true;
+            } catch (firstError) {
+                console.warn('فشل التحميل المباشر، جاري التجربة عبر البروكسي الأول...', firstError);
                 
-                const reader = response.body.getReader();
-                let receivedBytes = 0;
-                let chunks = [];
-
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
+                // 2. المحاولة الثانية: استخدام البروكسي السريع corsproxy.io لتجاوز الحماية [1]
+                try {
+                    const proxyUrl = `https://corsproxy.io/?url=${encodeURIComponent(url)}`;
+                    response = await fetch(proxyUrl);
+                    if (!response.ok) throw new Error('First proxy failed');
+                    success = true;
+                } catch (proxyError) {
+                    console.warn('فشل البروكسي الأول، جاري المحاولة عبر البروكسي البديل...', proxyError);
                     
-                    chunks.push(value);
-                    receivedBytes += value.length;
-                    
-                    if (totalBytes > 0) {
-                        const percent = Math.round((receivedBytes / totalBytes) * 100);
-                        showToast(i18n[currentLang].toastDownloadProgress.replace('{percent}', percent), 0);
-                    } else {
-                        const receivedMB = (receivedBytes / (1024 * 1024)).toFixed(1);
-                        showToast(i18n[currentLang].toastDownloadMB.replace('{mb}', receivedMB), 0);
+                    // 3. المحاولة الثالثة: استخدام البروكسي الاحتياطي allorigins.win في حال توقف الأول
+                    try {
+                        const backupProxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`;
+                        response = await fetch(backupProxyUrl);
+                        if (!response.ok) throw new Error('Backup proxy failed');
+                        success = true;
+                    } catch (backupError) {
+                        console.error('فشلت جميع محاولات الاتصال المباشر والوسيط:', backupError);
                     }
                 }
-
-                const blob = new Blob(chunks, { type: 'audio/mpeg' });
-                const blobUrl = window.URL.createObjectURL(blob);
-                
-                const tempLink = document.createElement('a');
-                tempLink.href = blobUrl;
-                tempLink.download = filename;
-                document.body.appendChild(tempLink);
-                tempLink.click();
-                
-                document.body.removeChild(tempLink);
-                window.URL.revokeObjectURL(blobUrl);
-                
-                showToast(i18n[currentLang].toastDownloadSuccess, 3000, true);
-                
-            } catch (error) {
-                console.warn('استخدام التحويل الاحتياطي للتحميل المباشر:', error);
-                window.open(url, '_blank');
-                if (currentLang === 'ar') {
-                    alert('تم الانتقال لصفحة المشغل نظراً لقيود حماية الخادم الخارجية.\n\nتنبيه: اضغط على خيارات المشغل الجديد (الثلاث نقاط) ثم اختر "تنزيل" لحفظ الملف على جهازك.');
-                } else {
-                    alert('Redirected to native player due to security policies.\n\nNote: Tap the three dots on the player and choose "Download" to save the file.');
-                }
-                
-                let toast = document.getElementById('app-toast');
-                if (toast) toast.classList.remove('active');
-            } finally {
-                if (buttonElement) {
-                    buttonElement.style.pointerEvents = 'auto';
-                    buttonElement.style.opacity = '1';
-                }
             }
+
+            // إذا نجح الاتصال عبر أي من الطرق السابقة، نبدأ بقراءة وحفظ الملف كـ Blob [1]
+            if (success && response) {
+                try {
+                    const contentLength = response.headers.get('content-length');
+                    const totalBytes = contentLength ? parseInt(contentLength, 10) : 0;
+                    
+                    const reader = response.body.getReader();
+                    let receivedBytes = 0;
+                    let chunks = [];
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+                        
+                        chunks.push(value);
+                        receivedBytes += value.length;
+                        
+                        if (totalBytes > 0) {
+                            const percent = Math.round((receivedBytes / totalBytes) * 100);
+                            showToast(i18n[currentLang].toastDownloadProgress.replace('{percent}', percent), 0);
+                        } else {
+                            const receivedMB = (receivedBytes / (1024 * 1024)).toFixed(1);
+                            showToast(i18n[currentLang].toastDownloadMB.replace('{mb}', receivedMB), 0);
+                        }
+                    }
+
+                    const blob = new Blob(chunks, { type: 'audio/mpeg' });
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    
+                    const tempLink = document.createElement('a');
+                    tempLink.href = blobUrl;
+                    tempLink.download = filename;
+                    document.body.appendChild(tempLink);
+                    tempLink.click();
+                    
+                    document.body.removeChild(tempLink);
+                    window.URL.revokeObjectURL(blobUrl);
+                    
+                    showToast(i18n[currentLang].toastDownloadSuccess, 3000, true);
+                    
+                } catch (readError) {
+                    console.error('خطأ أثناء معالجة تدفق بيانات الملف الصوتي:', readError);
+                    fallbackRedirect(url);
+                }
+            } else {
+                // إذا تعطلت خدمات البروكسي بالكامل، يتم التحويل لصفحة المشغل الأصلية كحل أخير
+                fallbackRedirect(url);
+            }
+
+            if (buttonElement) {
+                buttonElement.style.pointerEvents = 'auto';
+                buttonElement.style.opacity = '1';
+            }
+        }
+
+        // دالة التحويل الاحتياطي في حال تعذر التحميل بأي شكل
+        function fallbackRedirect(url) {
+            window.open(url, '_blank');
+            if (currentLang === 'ar') {
+                alert('تم الانتقال لصفحة المشغل نظراً لقيود حماية الخادم الخارجية.\n\nتنبيه: اضغط على خيارات المشغل الجديد (الثلاث نقاط) ثم اختر "تنزيل" لحفظ الملف على جهازك.');
+            } else {
+                alert('Redirected to native player due to security policies.\n\nNote: Tap the three dots on the player and choose "Download" to save the file.');
+            }
+            
+            let toast = document.getElementById('app-toast');
+            if (toast) toast.classList.remove('active');
         }
 
         function showToast(message, duration = 3000, isSuccess = false) {
