@@ -520,46 +520,35 @@
         }
 
         async function downloadFile(url, filename) {
-            showToast(currentLang === 'ar' ? "جاري محاولة التحميل المباشر..." : "Attempting direct download...");
+            showToast(currentLang === 'ar' ? "بدء التحميل..." : "Starting download...");
             
-            // روابط archive.org تحتاج لمعاملة خاصة لتحويلها لرابط تحميل مباشر
-            let downloadUrl = url;
-            if (url.includes('archive.org')) {
-                // تحويل روابط العرض إلى روابط تحميل مباشرة إذا كانت تحتوي على /details/ أو /items/
-                downloadUrl = url.replace('/details/', '/download/').replace('/items/', '/download/');
-            }
-
+            // محاولة التحميل عبر Fetch للحصول على تحميل مباشر
             try {
-                // محاولة التحميل عبر Fetch (ستنجح فقط إذا كان الـ CORS مسموحاً)
-                const response = await fetch(downloadUrl, { mode: 'cors' });
-                if (response.ok) {
-                    const blob = await response.blob();
-                    const blobUrl = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = blobUrl;
-                    a.download = `${filename}.mp3`;
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    window.URL.revokeObjectURL(blobUrl);
-                    return;
-                }
-            } catch (e) {
-                console.warn("Fetch failed, using direct link method");
+                const response = await fetch(url, { mode: 'cors' });
+                if (!response.ok) throw new Error('Network response was not ok');
+                const blob = await response.blob();
+                const blobUrl = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = `${filename}.mp3`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(blobUrl);
+            } catch (error) {
+                // Fallback: استخدام iframe أو فتح الرابط بطريقة تجبر التحميل إذا أمكن
+                console.warn("Fetch download failed, using fallback:", error);
+                const a = document.createElement('a');
+                a.href = url;
+                // إضافة بارامترات قد تساعد في بعض السيرفرات لإجبار التحميل
+                const downloadUrl = url.includes('?') ? `${url}&download=1` : `${url}?download=1`;
+                a.href = downloadUrl;
+                a.download = `${filename}.mp3`;
+                a.target = "_blank";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             }
-
-            // الطريقة البديلة: فتح الرابط في نافذة مخفية مع خاصية download
-            const a = document.createElement('a');
-            a.href = downloadUrl;
-            a.download = `${filename}.mp3`;
-            a.target = "_self"; // محاولة الفتح في نفس الصفحة لإجبار التحميل
-            
-            // إضافة تنبيه للمستخدم في حال فشل كل شيء وتحول للمشغل
-            showToast(currentLang === 'ar' ? "إذا لم يبدأ التحميل، اضغط مطولاً على الرابط واختر حفظ" : "If download doesn't start, long press and choose Save");
-            
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
         }
 
         function showToast(msg) {
