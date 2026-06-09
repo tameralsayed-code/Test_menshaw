@@ -551,9 +551,15 @@
         let playingKhatmahId = null;
         let audioInstance = new Audio();
         audioInstance.preload = "auto";
-        let surahs = [];
         let isRepeat = false;
         let isAutoplay = true;
+
+        // تخزين بيانات الختمتين في الذاكرة
+        let khatmahData = {
+            1: [],
+            2: []
+        };
+        let dataLoaded = false;
 
         // Theme Logic
         function toggleTheme() {
@@ -591,23 +597,29 @@
             if (!playingSurahId) document.getElementById('player-track-title').innerText = t.choose;
         }
 
-        // Fetch Data from JSON
-        async function fetchSurahs() {
-            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
+        // تحميل بيانات الختمتين مسبقاً
+        async function preloadAllData() {
             try {
-                const response = await fetch(fileName + '?v=' + Date.now());
-                surahs = await response.json();
+                const [data1, data2] = await Promise.all([
+                    fetch('surahs_1.json?v=' + Date.now()).then(r => r.json()),
+                    fetch('surahs_2.json?v=' + Date.now()).then(r => r.json())
+                ]);
+                khatmahData[1] = data1;
+                khatmahData[2] = data2;
+                dataLoaded = true;
+                renderUI();
             } catch (error) {
-                console.error("Error loading JSON:", error);
-                surahs = [];
+                console.error("Error preloading data:", error);
+                khatmahData[1] = [];
+                khatmahData[2] = [];
+                dataLoaded = true;
             }
         }
 
-        async function switchKhatmah(num) {
+        function switchKhatmah(num) {
             currentKhatmah = num;
             document.getElementById('khatmah-1-btn').classList.toggle('active', num === 1);
             document.getElementById('khatmah-2-btn').classList.toggle('active', num === 2);
-            await fetchSurahs();
             renderUI();
         }
 
@@ -615,6 +627,7 @@
             const list = document.getElementById('main-surah-list');
             list.innerHTML = '';
             const t = i18n[currentLang];
+            const surahs = khatmahData[currentKhatmah] || [];
 
             surahs.forEach(s => {
                 const name = surahNames[currentLang][s.id] || s.name;
@@ -682,6 +695,7 @@
         }
 
         function playNext() {
+            const surahs = khatmahData[currentKhatmah] || [];
             const idx = surahs.findIndex(s => s.id === playingSurahId);
             if (idx < surahs.length - 1) {
                 playSurah(surahs[idx + 1]);
@@ -691,6 +705,7 @@
         }
 
         function playPrevious() {
+            const surahs = khatmahData[currentKhatmah] || [];
             const idx = surahs.findIndex(s => s.id === playingSurahId);
             if (idx > 0) playSurah(surahs[idx - 1]);
         }
@@ -833,12 +848,11 @@
             setTimeout(() => toast.classList.remove('active'), 2200);
         }
 
-        // Init
+        // Init - تحميل البيانات مسبقاً عند بدء التطبيق
         (async function() {
             updateThemeIcon();
             updateTexts();
-            await fetchSurahs();
-            renderUI();
+            await preloadAllData();
         })();
     </script>
 </body>
