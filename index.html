@@ -136,9 +136,9 @@
             font-weight: 300;
             color: var(--text-main);
             margin-bottom: 2px;
-            white-space: nowrap; 
+            white-space: nowrap; /* يمنع نزول الاسم لسطر جديد */
             overflow: hidden;
-            text-overflow: ellipsis; 
+            text-overflow: ellipsis; /* يخفي الزوائد إن وجدت في الشاشات الصغيرة جداً */
         }
         header h1 strong { font-weight: 700; color: var(--accent-gold); }
         header p { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
@@ -146,7 +146,7 @@
         .khatmah-cards-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 4px;
             width: 100%;
             margin-bottom: 8px; 
         }
@@ -188,18 +188,17 @@
         .khatmah-card-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); line-height: 1.2; }
         .khatmah-card-desc { font-size: 0.6rem; color: var(--text-muted); }
 
-        .surah-list-container { display: flex; flex-direction: column; gap: 6px; }
+        .surah-list-container { display: flex; flex-direction: column; gap: 4px; }
 
         .surah-row {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 7px 12px; 
+            padding: 10px 12px; 
             background: var(--bg-mid);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
             transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-            cursor: pointer;
             box-shadow: 0 1px 3px var(--shadow-intensity);
         }
 
@@ -214,7 +213,7 @@
             background: var(--glass-active);
         }
 
-        .surah-info { display: flex; align-items: center; gap: 10px; }
+        .surah-info { display: flex; align-items: center; gap: 10px; cursor: default; }
         .surah-number { font-size: 0.7rem; color: var(--accent-gold); font-weight: 700; width: 25px; }
         .surah-name { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
 
@@ -271,7 +270,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            direction: ltr !important; 
+            direction: ltr !important; /* تثبيت الاتجاه من اليسار لليمين لمنع تشتت الدائرة */
         }
         body.dark-theme .player-seekbar-container { background: rgba(255, 255, 255, 0.1); }
 
@@ -285,7 +284,7 @@
 
         .player-seekbar-thumb {
             position: absolute;
-            right: -6px; 
+            right: -6px; /* تثبيت موضع الدائرة دائماً في نهاية الخط الملون للتقدم والرجوع */
             top: 50%;
             transform: translateY(-50%);
             width: 12px;
@@ -344,7 +343,7 @@
         }
         .player-btn.opt-btn svg { width: 15px; height: 15px; }
 
-        /* Download Progress Overlay */
+        /* Download Progress Overlay - استخدام opacity بدلاً من display لتجنب أخطاء إعادة الرسم */
         .download-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(5px);
@@ -488,7 +487,7 @@
                 title: "Sheikh Mohamed Siddiq <strong>El-Minshawi</strong>",
                 khatmah1: "First Khatmah", khatmah2: "Second Khatmah",
                 khatmah1Desc: "Classic Edition", khatmah2Desc: "Lost Edition",
-                download: "Download", choose: "Choose a Surah...", surah: "Surah ", play: "Play", pause: "Pause",
+                download: "Download", choose: "Choose a Surah...", surah: "", play: "Play", pause: "Pause",
                 dl_start: "Downloading...", dl_done: "Download Complete",
                 repeatOn: "Repeat Enabled", repeatOff: "Repeat Disabled",
                 autoplayOn: "Autoplay Enabled", autoplayOff: "Autoplay Disabled",
@@ -570,20 +569,19 @@
             const t = i18n[currentLang];
 
             surahs.forEach(s => {
-                const name = currentLang === 'ar' ? s.name : (surahNamesEN[s.id] || s.name);
+                const name = currentLang === 'ar' ? s.name : s.name;
                 const isPlaying = (playingSurahId === s.id && playingKhatmahId === currentKhatmah);
                 const isPaused = audioInstance.paused;
 
                 const row = document.createElement('div');
                 row.className = `surah-row ${isPlaying ? 'active-row' : ''}`;
-                row.onclick = () => playSurah(s);
                 row.innerHTML = `
                     <div class="surah-info">
                         <span class="surah-number">${String(s.id).padStart(3, '0')}</span>
                         <span class="surah-name">${t.surah}${name}</span>
                     </div>
                     <div class="actions">
-                        <button class="icon-btn ${isPlaying ? 'playing-icon' : ''}">
+                        <button class="icon-btn ${isPlaying ? 'playing-icon' : ''}" onclick="playSurah(${JSON.stringify(s).replace(/"/g, '&quot;')})">
                             ${isPlaying && !isPaused ? 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>' : 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>'}
@@ -611,7 +609,7 @@
             audioInstance.play().catch(e => console.log("Blocked:", e));
             
             document.getElementById('global-player').classList.add('active');
-            const name = currentLang === 'ar' ? s.name : (surahNamesEN[s.id] || s.name);
+            const name = currentLang === 'ar' ? s.name : s.name;
             document.getElementById('player-track-title').innerText = i18n[currentLang].surah + name;
             updatePlayBtn(true);
             renderUI();
@@ -662,17 +660,14 @@
             showToast(isAutoplay ? i18n[currentLang].autoplayOn : i18n[currentLang].autoplayOff);
         }
 
-        // Seekbar Logic with Drag-to-Scrub support
+        // Seekbar Logic
         const progressContainer = document.getElementById('progress-container');
         const progressBarFill = document.getElementById('progress-bar-fill');
         const currTimeEl = document.getElementById('curr-time');
         const totalTimeEl = document.getElementById('total-time');
 
-        let isDragging = false;
-        let dragPercent = 0;
-
         audioInstance.ontimeupdate = () => {
-            if (audioInstance.duration && !isDragging) {
+            if (audioInstance.duration) {
                 const percent = (audioInstance.currentTime / audioInstance.duration) * 100;
                 progressBarFill.style.width = percent + '%';
                 currTimeEl.innerText = formatTime(audioInstance.currentTime);
@@ -686,47 +681,31 @@
             return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
         }
 
-        progressContainer.onmousedown = (e) => { 
-            isDragging = true; 
-            handleSeek(e); 
-        };
-        window.onmousemove = (e) => { 
-            if (isDragging) handleSeek(e); 
-        };
-        window.onmouseup = () => { 
-            if (isDragging) {
-                isDragging = false; 
-                if (audioInstance.duration) {
-                    audioInstance.currentTime = dragPercent * audioInstance.duration;
-                }
-            }
-        };
-        progressContainer.ontouchstart = (e) => { 
-            isDragging = true; 
-            handleSeek(e.touches[0]); 
-        };
-        window.ontouchmove = (e) => { 
-            if (isDragging) handleSeek(e.touches[0]); 
-        };
-        window.ontouchend = () => { 
-            if (isDragging) {
-                isDragging = false; 
-                if (audioInstance.duration) {
-                    audioInstance.currentTime = dragPercent * audioInstance.duration;
-                }
-            }
-        };
+        let isDragging = false;
+        progressContainer.onmousedown = (e) => { isDragging = true; handleSeek(e); };
+        window.onmousemove = (e) => { if (isDragging) handleSeek(e); };
+        window.onmouseup = () => { isDragging = false; };
+        progressContainer.ontouchstart = (e) => { isDragging = true; handleSeek(e.touches[0]); };
+        window.ontouchmove = (e) => { if (isDragging) handleSeek(e.touches[0]); };
+        window.ontouchend = () => { isDragging = false; };
 
         function handleSeek(e) {
             const rect = progressContainer.getBoundingClientRect();
             let percent = (e.clientX - rect.left) / rect.width;
             percent = Math.max(0, Math.min(1, percent));
-            dragPercent = percent;
             progressBarFill.style.width = (percent * 100) + '%';
-            if (audioInstance.duration) {
+            if (!isDragging) {
+                audioInstance.currentTime = percent * audioInstance.duration;
+            } else {
                 currTimeEl.innerText = formatTime(percent * audioInstance.duration);
             }
         }
+        
+        progressContainer.onclick = (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audioInstance.currentTime = percent * audioInstance.duration;
+        };
 
         // معالجة انتهاء المقطع الصوتي
         audioInstance.onended = () => { 
@@ -741,7 +720,7 @@
             }
         };
 
-        // Download Logic with Progress
+        // Download Logic with Progress (تمت معالجة تكرار التحميل دون توقف)
         async function downloadFile(url, filename) {
             const overlay = document.getElementById('download-overlay');
             const fill = document.getElementById('dl-progress-fill');
@@ -750,13 +729,16 @@
             const titleText = document.getElementById('dl-title-text');
             const t = i18n[currentLang];
 
+            // تعيين النصوص برمجياً دون تدمير الهيكل الداخلي
             titleText.innerText = t.dl_start;
             surahNameText.innerText = t.surah + filename;
             fill.style.width = '0%';
             percentText.innerText = '0%';
 
+            // إظهار نافذة التحميل
             overlay.classList.add('active');
 
+            // تأخير بسيط لإعطاء المتصفح فرصة رسم الواجهة
             await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 50)));
 
             try {
