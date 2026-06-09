@@ -629,7 +629,7 @@
 
         <header>
             <div class="header-image-container">
-                <img src="https://f.top4top.io/p_38068cvpd0.jpg" alt="الشيخ محمد صديق المنشاوي" class="header-img">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Minshawy.jpg" alt="الشيخ محمد صديق المنشاوي" class="header-img">
             </div>
             <h1 id="main-title">الشيخ محمد صديق <strong>المنشاوي</strong></h1>
             <p id="header-subtitle">الختمة المرتلة</p>
@@ -748,38 +748,6 @@
     </div>
 
     <script>
-        // قاموس أسماء السور بالعربية والإنجليزية
-        const surahNames = {
-            ar: {
-                1: "الفاتحة", 2: "البقرة", 3: "آل عمران", 4: "النساء", 5: "المائدة", 6: "الأنعام", 7: "الأعراف", 8: "الأنفال", 9: "التوبة", 10: "يونس",
-                11: "هود", 12: "يوسف", 13: "الرعد", 14: "إبراهيم", 15: "الحجر", 16: "النحل", 17: "الإسراء", 18: "الكهف", 19: "مريم", 20: "طه",
-                21: "الأنبياء", 22: "الحج", 23: "المؤمنون", 24: "النور", 25: "الفرقان", 26: "الشعراء", 27: "النمل", 28: "القصص", 29: "العنكبوت", 30: "الروم",
-                31: "لقمان", 32: "السجدة", 33: "الأحزاب", 34: "سبأ", 35: "فاطر", 36: "يس", 37: "الصافات", 38: "ص", 39: "الزمر", 40: "غافر",
-                41: "فصلت", 42: "الشورى", 43: "الزخرف", 44: "الدخان", 45: "الجاثية", 46: "الأحقاف", 47: "محمد", 48: "الفتح", 49: "الحجرات", 50: "ق",
-                51: "الذاريات", 52: "الطور", 53: "النجم", 54: "القمر", 55: "الرحمن", 56: "الواقعة", 57: "الحديد", 58: "المجادلة", 59: "الحشر", 60: "الممتحنة",
-                61: "الصف", 62: "الجمعة", 63: "المنافقون", 64: "التغابن", 65: "الطلاق", 66: "التحريم", 67: "الملك", 68: "القلم", 69: "الحاقة", 70: "المعارج",
-                71: "نوح", 72: "الجن", 73: "المزمل", 74: "المدثر", 75: "القيامة", 76: "الإنسان", 77: "المرسلات", 78: "النبأ", 79: "النازعات", 80: "عبس",
-                81: "التكوير", 82: "الإنفطار", 83: "المطففين", 84: "الانشقاق", 85: "البروج", 86: "الطارق", 87: "الأعلى", 88: "الغاشية", 89: "الفجر", 90: "البلد",
-                91: "الشمس", 92: "الليل", 93: "الضحى", 94: "الشرح", 95: "التين", 96: "العلق", 97: "القدر", 98: "البينة", 99: "الزلزلة", 100: "العاديات",
-                101: "القارعة", 102: "التكاثر", 103: "العصر", 104: "الهمزة", 105: "الفيل", 106: "قريش", 107: "الماعون", 108: "الكوثر", 109: "الكافرون", 110: "النصر",
-                111: "المسد", 112: "الإخلاص", 113: "الفلق", 114: "الناس"
-            },
-            en: {
-                1: "Al-Fatihah", 2: "Al-Baqarah", 3: "Ali 'Imran", 4: "An-Nisa'", 5: "Al-Ma'idah", 6: "Al-An'am", 7: "Al-A'raf", 8: "Al-Anfal", 9: "At-Tawbah", 10: "Yunus",
-                11: "Hud", 12: "Yusuf", 13: "Ar-Ra'd", 14: "Ibrahim", 15: "Al-Hijr", 16: "An-Nahl", 17: "Al-Isra'", 18: "Al-Kahf", 19: "Maryam", 20: "Ta-Ha",
-                21: "Al-Anbiya'", 22: "Al-Hajj", 23: "Al-Mu'minun", 24: "An-Nur", 25: "Al-Furqan", 26: "Ash-Shu'ara'", 27: "An-Naml", 28: "Al-Qasas", 29: "Al-'Ankabut", 30: "Ar-Rum",
-                31: "Luqman", 32: "As-Sajdah", 33: "Al-Ahzab", 34: "Saba'", 35: "Fatir", 36: "Ya-Sin", 37: "As-Saffat", 38: "Sad", 39: "Az-Zumar", 40: "Ghafir",
-                41: "Fussilat", 42: "Ash-Shura", 43: "Az-Zukhruf", 44: "Ad-Dukhan", 45: "Al-Jathiyah", 46: "Al-Ahqaf", 47: "Muhammad", 48: "Al-Fath", 49: "Al-Hujurat", 50: "Qaf",
-                51: "Adh-Dhariyat", 52: "At-Tur", 53: "An-Najm", 54: "Al-Qamar", 55: "Ar-Rahman", 56: "Al-Waqi'ah", 57: "Al-Hadid", 58: "Al-Mujadilah", 59: "Al-Hashr", 60: "Al-Mumtahanah",
-                61: "As-Saff", 62: "Al-Jumu'ah", 63: "Al-Munafiqun", 64: "At-Taghabun", 65: "At-Talaq", 66: "At-Tahrim", 67: "Al-Mulk", 68: "Al-Qalam", 69: "Al-Haqqah", 70: "Al-Ma'arij",
-                71: "Nuh", 72: "Al-Jinn", 73: "Al-Muzzammil", 74: "Al-Muddaththir", 75: "Al-Qiyamah", 76: "Al-Insan", 77: "Al-Mursalat", 78: "An-Naba'", 79: "An-Nazi'at", 80: "'Abasa",
-                81: "At-Takwir", 82: "Al-Infitar", 83: "Al-Mutaffifin", 84: "Al-Inshiqaq", 85: "Al-Buruj", 86: "At-Tariq", 87: "Al-A'la", 88: "Al-Ghashiyah", 89: "Al-Fajr", 90: "Al-Balad",
-                91: "Ash-Shams", 92: "Al-Layl", 93: "Ad-Duha", 94: "Ash-Sharh", 95: "At-Tin", 96: "Al-'Alaq", 97: "Al-Qadr", 98: "Al-Bayyinah", 99: "Az-Zalzalah", 100: "Al-'Adiyat",
-                101: "Al-Qari'ah", 102: "At-Takathur", 103: "Al-'Asr", 104: "Al-Humazah", 105: "Al-Fil", 106: "Quraysh", 107: "Al-Ma'un", 108: "Al-Kawthar", 109: "Al-Kafirun", 110: "An-Nasr",
-                111: "Al-Masad", 112: "Al-Ikhlas", 113: "Al-Falaq", 114: "An-Nas"
-            }
-        };
-
         const i18n = {
             ar: {
                 title: "الشيخ محمد صديق <strong>المنشاوي</strong>",
@@ -912,22 +880,39 @@
             if (!playingSurahId) document.getElementById('player-track-title').innerText = t.choose;
         }
 
-        // تحميل بيانات الختمتين مسبقاً
+        // تحميل بيانات الختمتين بشكل مستقل لتفادي توقف الصفحة إذا فقد أحد الملفين
         async function preloadAllData() {
-            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
             try {
-                const [data1, data2] = await Promise.all([
-                    fetch('surahs_1.json?v=' + Date.now()).then(r => r.json()),
-                    fetch('surahs_2.json?v=' + Date.now()).then(r => r.json())
-                ]);
-                khatmahData[1] = data1;
-                khatmahData[2] = data2;
+                // محاولة تحميل الختمة الأولى
+                try {
+                    const response1 = await fetch('surahs_1.json?v=' + Date.now());
+                    if (response1.ok) {
+                        khatmahData[1] = await response1.json();
+                    }
+                } catch (e) {
+                    console.warn("Could not load surahs_1.json:", e);
+                }
+
+                // محاولة تحميل الختمة الثانية
+                try {
+                    const response2 = await fetch('surahs_2.json?v=' + Date.now());
+                    if (response2.ok) {
+                        khatmahData[2] = await response2.json();
+                    }
+                } catch (e) {
+                    console.warn("Could not load surahs_2.json:", e);
+                }
+
                 dataLoaded = true;
-                renderUI();
+
+                // التبديل للختمة المتوفرة تلقائياً
+                if (khatmahData[1].length === 0 && khatmahData[2].length > 0) {
+                    switchKhatmah(2);
+                } else {
+                    renderUI();
+                }
             } catch (error) {
-                console.error("Error loading JSON:", error);
-                // إذا فشل التحميل، نستخدم المنطق الأصلي لجلب الختمة الحالية فقط لضمان عمل الموقع
-                fetchCurrentKhatmahOnly();
+                console.error("General loading error:", error);
             }
         }
 
@@ -935,12 +920,14 @@
             const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
             try {
                 const response = await fetch(fileName + '?v=' + Date.now());
-                const data = await response.json();
-                khatmahData[currentKhatmah] = data;
-                dataLoaded = true;
-                renderUI();
+                if (response.ok) {
+                    const data = await response.json();
+                    khatmahData[currentKhatmah] = data;
+                    dataLoaded = true;
+                    renderUI();
+                }
             } catch (error) {
-                console.error("Final fallback error:", error);
+                console.error("Fallback single fetch error:", error);
             }
         }
 
@@ -953,7 +940,7 @@
             currentFilter = 'all';
             updateFilterTabs();
             
-            if (khatmahData[num].length === 0) {
+            if (!khatmahData[num] || khatmahData[num].length === 0) {
                 await fetchCurrentKhatmahOnly();
             } else {
                 renderUI();
@@ -1017,7 +1004,7 @@
             if (searchQuery) {
                 const query = searchQuery.toLowerCase();
                 surahs = surahs.filter(s => {
-                    const name = surahNames[currentLang][s.id] || s.name;
+                    const name = s.name || '';
                     return name.toLowerCase().includes(query) || s.id.toString().includes(query);
                 });
             }
@@ -1027,7 +1014,6 @@
                 surahs = surahs.filter(s => isFavorite(s.id));
             }
 
-            // عدم إعادة ترتيب - الحفاظ على الترتيب الأصلي للسور
             surahs.sort((a, b) => a.id - b.id);
 
             return surahs;
@@ -1038,20 +1024,18 @@
             list.innerHTML = '';
             const t = i18n[currentLang];
             
-            // إذا كنا في عرض المفضلة، نعرض السور مجمعة حسب الختمة
             if (currentFilter === 'favorites') {
                 renderFavoritesGrouped(list, t);
                 return;
             }
             
-            // عرض السور العادي (بدون تجميع)
             const surahs = getFilteredSurahs();
             renderSurahList(list, t, surahs);
         }
 
         function renderSurahList(list, t, surahs) {
             surahs.forEach(s => {
-                const name = surahNames[currentLang][s.id] || s.name;
+                const name = s.name; // الاعتماد الكلي على الاسم القادم من الـ JSON
                 const isPlaying = (playingSurahId === s.id && playingKhatmahId === currentKhatmah);
                 const isPaused = audioInstance.paused;
                 const isFav = isFavorite(s.id);
@@ -1095,17 +1079,14 @@
                 
                 if (filteredSurahs.length === 0) continue;
                 
-                // عنوان الختمة
                 const khatmahTitle = document.createElement('div');
                 khatmahTitle.className = 'khatmah-section-title';
                 khatmahTitle.innerText = (khatmahNum == 1 ? t.khatmah1 : t.khatmah2);
                 list.appendChild(khatmahTitle);
                 
-                // السور
                 renderSurahList(list, t, filteredSurahs);
             }
             
-            // إذا لم توجد أي مفضلات
             if (!hasAnyFavorites) {
                 const emptyMsg = document.createElement('div');
                 emptyMsg.style.cssText = 'text-align: center; padding: 30px 20px; color: var(--text-muted); font-size: 0.85rem;';
@@ -1128,7 +1109,7 @@
             audioInstance.play().catch(e => console.log("Blocked:", e));
             
             document.getElementById('global-player').classList.add('active');
-            const name = surahNames[currentLang][s.id] || s.name;
+            const name = s.name;
             document.getElementById('player-track-title').innerText = i18n[currentLang].surah + name;
             updatePlayBtn(true);
             renderUI();
@@ -1168,7 +1149,6 @@
             if (idx > 0) playSurah(surahs[idx - 1]);
         }
 
-        // تحكم التكرار والتشغيل التلقائي
         function toggleRepeat() {
             isRepeat = !isRepeat;
             document.getElementById('player-repeat-btn').classList.toggle('active', isRepeat);
@@ -1181,7 +1161,6 @@
             showToast(isAutoplay ? i18n[currentLang].autoplayOn : i18n[currentLang].autoplayOff);
         }
 
-        // مؤقت النوم
         function openSleepTimer() {
             document.getElementById('sleep-timer-modal').classList.add('active');
         }
@@ -1208,7 +1187,6 @@
             }, minutes * 60 * 1000);
         }
 
-        // Seekbar Logic
         const progressContainer = document.getElementById('progress-container');
         const progressBarFill = document.getElementById('progress-bar-fill');
         const currTimeEl = document.getElementById('curr-time');
@@ -1255,7 +1233,6 @@
             audioInstance.currentTime = percent * audioInstance.duration;
         };
 
-        // معالجة انتهاء المقطع الصوتي
         audioInstance.onended = () => { 
             if (isRepeat) {
                 audioInstance.currentTime = 0;
@@ -1268,7 +1245,6 @@
             }
         };
 
-        // Download Logic with Progress
         async function downloadFile(url, filename) {
             const overlay = document.getElementById('download-overlay');
             const fill = document.getElementById('dl-progress-fill');
@@ -1333,14 +1309,13 @@
             setTimeout(() => toast.classList.remove('active'), 2200);
         }
 
-        // Init - تحميل البيانات مسبقاً عند بدء التطبيق
+        // بدء تحميل البيانات مباشرة عند تشغيل الصفحة
         (async function() {
             updateThemeIcon();
             updateTexts();
             await preloadAllData();
         })();
 
-        // إغلاق modal عند الضغط خارجه
         document.getElementById('sleep-timer-modal').addEventListener('click', (e) => {
             if (e.target === document.getElementById('sleep-timer-modal')) {
                 closeSleepTimer();
