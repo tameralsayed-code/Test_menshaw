@@ -136,9 +136,9 @@
             font-weight: 300;
             color: var(--text-main);
             margin-bottom: 2px;
-            white-space: nowrap; /* يمنع نزول الاسم لسطر جديد */
+            white-space: nowrap;
             overflow: hidden;
-            text-overflow: ellipsis; /* يخفي الزوائد إن وجدت في الشاشات الصغيرة جداً */
+            text-overflow: ellipsis;
         }
         header h1 strong { font-weight: 700; color: var(--accent-gold); }
         header p { font-size: 0.75rem; color: var(--text-muted); font-weight: 400; }
@@ -270,7 +270,7 @@
             position: relative;
             display: flex;
             align-items: center;
-            direction: ltr !important; /* تثبيت الاتجاه من اليسار لليمين لمنع تشتت الدائرة */
+            direction: ltr !important;
         }
         body.dark-theme .player-seekbar-container { background: rgba(255, 255, 255, 0.1); }
 
@@ -284,7 +284,7 @@
 
         .player-seekbar-thumb {
             position: absolute;
-            right: -6px; /* تثبيت موضع الدائرة دائماً في نهاية الخط الملون للتقدم والرجوع */
+            right: -6px;
             top: 50%;
             transform: translateY(-50%);
             width: 12px;
@@ -343,7 +343,7 @@
         }
         .player-btn.opt-btn svg { width: 15px; height: 15px; }
 
-        /* Download Progress Overlay - استخدام opacity بدلاً من display لتجنب أخطاء إعادة الرسم */
+        /* Download Progress Overlay */
         .download-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(5px);
@@ -468,30 +468,46 @@
     </div>
 
     <script>
-        const surahNamesEN = {
-            1: "Al-Fatihah", 2: "Al-Baqarah", 3: "Ali 'Imran", 4: "An-Nisa'", 18: "Al-Kahf", 36: "Ya-Sin", 55: "Ar-Rahman", 114: "An-Nas"
-        };
-
         const i18n = {
             ar: {
                 title: "الشيخ محمد صديق <strong>المنشاوي</strong>",
-                khatmah1: "الختمة الأولى", khatmah2: "الختمة الثانية",
-                khatmah1Desc: "النسخة الكلاسيكية", khatmah2Desc: "النسخة المفقودة",
-                download: "تحميل", choose: "اختر سورة للبدء...", surah: "سورة ", play: "تشغيل", pause: "إيقاف",
-                dl_start: "جاري التحميل...", dl_done: "تم التحميل بنجاح",
-                repeatOn: "تم تفعيل تكرار السورة", repeatOff: "تم إيقاف تكرار السورة",
-                autoplayOn: "تم تفعيل التشغيل التلقائي", autoplayOff: "تم إيقاف التشغيل التلقائي",
-                repeatTooltip: "تكرار السورة", autoplayTooltip: "التشغيل التلقائي"
+                khatmah1: "الختمة الأولى", 
+                khatmah2: "الختمة الثانية",
+                khatmah1Desc: "النسخة الكلاسيكية", 
+                khatmah2Desc: "النسخة المفقودة",
+                download: "تحميل", 
+                choose: "اختر سورة للبدء...", 
+                surah: "سورة ", 
+                play: "تشغيل", 
+                pause: "إيقاف",
+                dl_start: "جاري التحميل...", 
+                dl_done: "تم التحميل بنجاح",
+                repeatOn: "تم تفعيل تكرار السورة", 
+                repeatOff: "تم إيقاف تكرار السورة",
+                autoplayOn: "تم تفعيل التشغيل التلقائي", 
+                autoplayOff: "تم إيقاف التشغيل التلقائي",
+                repeatTooltip: "تكرار السورة", 
+                autoplayTooltip: "التشغيل التلقائي"
             },
             en: {
                 title: "Sheikh Mohamed Siddiq <strong>El-Minshawi</strong>",
-                khatmah1: "First Khatmah", khatmah2: "Second Khatmah",
-                khatmah1Desc: "Classic Edition", khatmah2Desc: "Lost Edition",
-                download: "Download", choose: "Choose a Surah...", surah: "", play: "Play", pause: "Pause",
-                dl_start: "Downloading...", dl_done: "Download Complete",
-                repeatOn: "Repeat Enabled", repeatOff: "Repeat Disabled",
-                autoplayOn: "Autoplay Enabled", autoplayOff: "Autoplay Disabled",
-                repeatTooltip: "Repeat Surah", autoplayTooltip: "Autoplay Next"
+                khatmah1: "First Khatmah", 
+                khatmah2: "Second Khatmah",
+                khatmah1Desc: "Classic Edition", 
+                khatmah2Desc: "Lost Edition",
+                download: "Download", 
+                choose: "Choose a Surah...", 
+                surah: "", 
+                play: "Play", 
+                pause: "Pause",
+                dl_start: "Downloading...", 
+                dl_done: "Download Complete",
+                repeatOn: "Repeat Enabled", 
+                repeatOff: "Repeat Disabled",
+                autoplayOn: "Autoplay Enabled", 
+                autoplayOff: "Autoplay Disabled",
+                repeatTooltip: "Repeat Surah", 
+                autoplayTooltip: "Autoplay Next"
             }
         };
 
@@ -543,7 +559,7 @@
             if (!playingSurahId) document.getElementById('player-track-title').innerText = t.choose;
         }
 
-        // Fetch Data from JSON (ORIGINAL LOGIC)
+        // Fetch Data from JSON
         async function fetchSurahs() {
             const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
             try {
@@ -569,7 +585,7 @@
             const t = i18n[currentLang];
 
             surahs.forEach(s => {
-                const name = currentLang === 'ar' ? s.name : s.name;
+                const name = s.name;
                 const isPlaying = (playingSurahId === s.id && playingKhatmahId === currentKhatmah);
                 const isPaused = audioInstance.paused;
 
@@ -609,7 +625,7 @@
             audioInstance.play().catch(e => console.log("Blocked:", e));
             
             document.getElementById('global-player').classList.add('active');
-            const name = currentLang === 'ar' ? s.name : s.name;
+            const name = s.name;
             document.getElementById('player-track-title').innerText = i18n[currentLang].surah + name;
             updatePlayBtn(true);
             renderUI();
@@ -720,7 +736,7 @@
             }
         };
 
-        // Download Logic with Progress (تمت معالجة تكرار التحميل دون توقف)
+        // Download Logic with Progress
         async function downloadFile(url, filename) {
             const overlay = document.getElementById('download-overlay');
             const fill = document.getElementById('dl-progress-fill');
@@ -729,16 +745,13 @@
             const titleText = document.getElementById('dl-title-text');
             const t = i18n[currentLang];
 
-            // تعيين النصوص برمجياً دون تدمير الهيكل الداخلي
             titleText.innerText = t.dl_start;
             surahNameText.innerText = t.surah + filename;
             fill.style.width = '0%';
             percentText.innerText = '0%';
 
-            // إظهار نافذة التحميل
             overlay.classList.add('active');
 
-            // تأخير بسيط لإعطاء المتصفح فرصة رسم الواجهة
             await new Promise(resolve => requestAnimationFrame(() => setTimeout(resolve, 50)));
 
             try {
