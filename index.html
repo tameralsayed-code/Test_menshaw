@@ -356,6 +356,17 @@
         .icon-btn.playing-icon { color: var(--accent-gold); }
         .icon-btn.favorite-active { color: #e74c3c; }
 
+        /* Khatmah Title in Favorites */
+        .khatmah-section-title {
+            padding: 12px 0 6px 0;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            text-align: right;
+            border-bottom: 1px solid var(--glass-border);
+            margin-bottom: 6px;
+        }
+
         /* Floating Player */
         .floating-player {
             position: fixed;
@@ -850,8 +861,10 @@
         };
         let dataLoaded = false;
 
-        // المفضلات
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+        // المفضلات - مفصولة حسب الختمة
+        let favoritesData = JSON.parse(localStorage.getItem('favorites')) || {};
+        if (!favoritesData[1]) favoritesData[1] = [];
+        if (!favoritesData[2]) favoritesData[2] = [];
 
         // مؤقت النوم
         let sleepTimerTimeout = null;
@@ -956,20 +969,27 @@
         }
 
         function toggleFavorite(surahId) {
-            const index = favorites.indexOf(surahId);
+            if (!favoritesData[currentKhatmah]) {
+                favoritesData[currentKhatmah] = [];
+            }
+            
+            const index = favoritesData[currentKhatmah].indexOf(surahId);
             if (index > -1) {
-                favorites.splice(index, 1);
+                favoritesData[currentKhatmah].splice(index, 1);
                 showToast(i18n[currentLang].removedFromFavorites);
             } else {
-                favorites.push(surahId);
+                favoritesData[currentKhatmah].push(surahId);
                 showToast(i18n[currentLang].addedToFavorites);
             }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
+            localStorage.setItem('favorites', JSON.stringify(favoritesData));
             renderUI();
         }
 
         function isFavorite(surahId) {
-            return favorites.includes(surahId);
+            if (!favoritesData[currentKhatmah]) {
+                favoritesData[currentKhatmah] = [];
+            }
+            return favoritesData[currentKhatmah].includes(surahId);
         }
 
         function getFilteredSurahs() {
@@ -989,16 +1009,8 @@
                 surahs = surahs.filter(s => isFavorite(s.id));
             }
 
-            // ترتيب المفضلة في الأعلى
-            if (currentFilter === 'all') {
-                surahs.sort((a, b) => {
-                    const aFav = isFavorite(a.id);
-                    const bFav = isFavorite(b.id);
-                    if (aFav && !bFav) return -1;
-                    if (!aFav && bFav) return 1;
-                    return a.id - b.id;
-                });
-            }
+            // عدم إعادة ترتيب - الحفاظ على الترتيب الأصلي للسور
+            surahs.sort((a, b) => a.id - b.id);
 
             return surahs;
         }
@@ -1007,8 +1019,19 @@
             const list = document.getElementById('main-surah-list');
             list.innerHTML = '';
             const t = i18n[currentLang];
+            
+            // إذا كنا في عرض المفضلة، نعرض السور مجمعة حسب الختمة
+            if (currentFilter === 'favorites') {
+                renderFavoritesGrouped(list, t);
+                return;
+            }
+            
+            // عرض السور العادي (بدون تجميع)
             const surahs = getFilteredSurahs();
+            renderSurahList(list, t, surahs);
+        }
 
+        function renderSurahList(list, t, surahs) {
             surahs.forEach(s => {
                 const name = surahNames[currentLang][s.id] || s.name;
                 const isPlaying = (playingSurahId === s.id && playingKhatmahId === currentKhatmah);
@@ -1040,6 +1063,37 @@
                 `;
                 list.appendChild(row);
             });
+        }
+
+        function renderFavoritesGrouped(list, t) {
+            let hasAnyFavorites = false;
+            
+            for (let khatmahNum = 1; khatmahNum <= 2; khatmahNum++) {
+                if (!favoritesData[khatmahNum] || favoritesData[khatmahNum].length === 0) continue;
+                
+                hasAnyFavorites = true;
+                const khatmahSurahs = khatmahData[khatmahNum] || [];
+                const filteredSurahs = khatmahSurahs.filter(s => favoritesData[khatmahNum].includes(s.id));
+                
+                if (filteredSurahs.length === 0) continue;
+                
+                // عنوان الختمة
+                const khatmahTitle = document.createElement('div');
+                khatmahTitle.className = 'khatmah-section-title';
+                khatmahTitle.innerText = (khatmahNum == 1 ? t.khatmah1 : t.khatmah2);
+                list.appendChild(khatmahTitle);
+                
+                // السور
+                renderSurahList(list, t, filteredSurahs);
+            }
+            
+            // إذا لم توجد أي مفضلات
+            if (!hasAnyFavorites) {
+                const emptyMsg = document.createElement('div');
+                emptyMsg.style.cssText = 'text-align: center; padding: 30px 20px; color: var(--text-muted); font-size: 0.85rem;';
+                emptyMsg.innerText = t.favorites + ' ' + (currentLang === 'ar' ? 'فارغة' : 'is empty');
+                list.appendChild(emptyMsg);
+            }
         }
 
         function playSurah(s) {
