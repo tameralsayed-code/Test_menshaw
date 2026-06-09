@@ -914,6 +914,7 @@
 
         // تحميل بيانات الختمتين مسبقاً
         async function preloadAllData() {
+            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
             try {
                 const [data1, data2] = await Promise.all([
                     fetch('surahs_1.json?v=' + Date.now()).then(r => r.json()),
@@ -924,14 +925,26 @@
                 dataLoaded = true;
                 renderUI();
             } catch (error) {
-                console.error("Error preloading data:", error);
-                khatmahData[1] = [];
-                khatmahData[2] = [];
-                dataLoaded = true;
+                console.error("Error loading JSON:", error);
+                // إذا فشل التحميل، نستخدم المنطق الأصلي لجلب الختمة الحالية فقط لضمان عمل الموقع
+                fetchCurrentKhatmahOnly();
             }
         }
 
-        function switchKhatmah(num) {
+        async function fetchCurrentKhatmahOnly() {
+            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
+            try {
+                const response = await fetch(fileName + '?v=' + Date.now());
+                const data = await response.json();
+                khatmahData[currentKhatmah] = data;
+                dataLoaded = true;
+                renderUI();
+            } catch (error) {
+                console.error("Final fallback error:", error);
+            }
+        }
+
+        async function switchKhatmah(num) {
             currentKhatmah = num;
             document.getElementById('khatmah-1-btn').classList.toggle('active', num === 1);
             document.getElementById('khatmah-2-btn').classList.toggle('active', num === 2);
@@ -939,7 +952,12 @@
             document.getElementById('search-input').value = '';
             currentFilter = 'all';
             updateFilterTabs();
-            renderUI();
+            
+            if (khatmahData[num].length === 0) {
+                await fetchCurrentKhatmahOnly();
+            } else {
+                renderUI();
+            }
         }
 
         // البحث والتصفية
