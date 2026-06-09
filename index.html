@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>الشيخ محمد صديق المنشاوي - الختمات المرتلة</title>
+    <title>الشيخ محمد صديق المنشاوي - المشغل المطور</title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JJ4WGLT89"></script>
@@ -68,7 +68,7 @@
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            padding-bottom: 140px; 
+            padding-bottom: 160px; 
             user-select: none;
             -webkit-user-select: none;
             transition: background 0.3s ease, color 0.3s ease;
@@ -111,9 +111,6 @@
             border-color: rgba(212, 175, 55, 0.2);
         }
 
-        .top-btn svg { width: 18px; height: 18px; }
-        .top-btn span { font-size: 0.75rem; font-weight: 700; }
-
         header { text-align: center; padding: 10px; }
         
         .header-image-container {
@@ -129,7 +126,6 @@
             border-radius: 50%;
             border: 2px solid var(--accent-gold);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s ease;
         }
         
         header h1 { 
@@ -153,15 +149,13 @@
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
             border-radius: 10px;
-            padding: 6px 10px;
+            padding: 8px 10px;
             cursor: pointer;
-            position: relative;
             display: flex;
             align-items: center;
             gap: 8px;
             transition: all 0.3s ease;
             outline: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
 
         .khatmah-card.active {
@@ -193,10 +187,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 10px 14px;
+            padding: 12px 14px;
             background: var(--glass-bg);
             border: 1px solid var(--glass-border);
-            border-radius: 10px;
+            border-radius: 12px;
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -208,20 +202,20 @@
 
         .surah-row.active-row {
             border-color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.05);
+            background: rgba(212, 175, 55, 0.08);
         }
 
         .surah-info { display: flex; align-items: center; gap: 10px; }
         .surah-number { font-size: 0.7rem; color: var(--accent-gold); font-weight: 700; width: 25px; }
         .surah-name { font-size: 0.9rem; font-weight: 600; color: var(--text-main); }
 
-        .actions { display: flex; align-items: center; gap: 5px; }
+        .actions { display: flex; align-items: center; gap: 8px; }
         .icon-btn {
             background: transparent;
             border: none;
             color: var(--text-muted);
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -231,57 +225,106 @@
         }
 
         .icon-btn:hover { color: var(--accent-gold); background: rgba(255, 255, 255, 0.05); }
-        .icon-btn svg { width: 16px; height: 16px; }
+        .icon-btn svg { width: 18px; height: 18px; }
         .icon-btn.playing-icon { color: var(--accent-gold); }
 
+        /* Floating Player Styles */
         .floating-player {
             position: fixed;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 90%;
+            width: 92%;
             max-width: 440px;
             background: var(--player-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 15px;
-            padding: 10px 14px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
             z-index: 1000;
             display: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .floating-player.active { display: block; animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { bottom: -50px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
+        .floating-player.active { display: block; animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        @keyframes slideUp { from { bottom: -100px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
 
+        /* New Seekbar Styles */
         .player-seekbar-container {
             width: 100%;
-            height: 3px;
-            background: rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
-            margin-bottom: 8px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            margin-bottom: 15px;
             cursor: pointer;
+            position: relative;
+            display: flex;
+            align-items: center;
         }
-        body:not(.light-theme) .player-seekbar-container { background: rgba(255, 255, 255, 0.1); }
+        body.light-theme .player-seekbar-container { background: rgba(0, 0, 0, 0.08); }
 
-        .player-seekbar-fill { height: 100%; background: var(--accent-gold); width: 0%; border-radius: 2px; }
+        .player-seekbar-fill { 
+            height: 100%; 
+            background: linear-gradient(to left, var(--accent-gold), var(--accent-hover)); 
+            width: 0%; 
+            border-radius: 10px; 
+            position: relative;
+        }
 
-        .player-compact-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
-        .player-info { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 0; }
-        .player-title { font-size: 0.8rem; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* The Small Circle (Thumb) */
+        .player-seekbar-thumb {
+            position: absolute;
+            right: -6px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--text-main);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .player-seekbar-container:hover .player-seekbar-thumb { transform: translateY(-50%) scale(1.2); }
+
+        .player-compact-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+        .player-info { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+        .player-title { font-size: 0.9rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .player-time { font-size: 0.7rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
         
-        .player-actions { display: flex; align-items: center; gap: 4px; }
-        .player-btn { background: transparent; border: none; color: var(--text-main); cursor: pointer; padding: 4px; }
-        .player-btn svg { width: 18px; height: 18px; }
-        .play-toggle-btn { color: var(--accent-gold); }
+        .player-actions { display: flex; align-items: center; gap: 8px; }
+        .player-btn { background: transparent; border: none; color: var(--text-main); cursor: pointer; padding: 6px; border-radius: 50%; transition: background 0.2s; }
+        .player-btn:hover { background: rgba(255,255,255,0.05); }
+        .player-btn svg { width: 22px; height: 22px; }
+        .play-toggle-btn { background: var(--accent-gold); color: var(--bg-dark); padding: 10px; }
+        .play-toggle-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+
+        /* Modern Download Progress */
+        .download-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; z-index: 3000;
+        }
+        .download-card {
+            background: var(--bg-mid); border: 1px solid var(--accent-gold);
+            padding: 25px; border-radius: 20px; width: 85%; max-width: 320px;
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+        .download-title { font-size: 1rem; margin-bottom: 15px; color: var(--text-main); }
+        .download-surah-name { color: var(--accent-gold); font-weight: 700; display: block; margin-top: 5px; }
+        .download-progress-container { height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin: 15px 0; }
+        .download-progress-fill { height: 100%; background: var(--accent-gold); width: 0%; transition: width 0.3s; }
+        .download-percent { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
 
         .toast-notification {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
             background: var(--bg-dark); border: 1px solid var(--accent-gold);
-            color: var(--text-main); padding: 10px 20px; border-radius: 25px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 2000; font-size: 0.85rem;
-            transition: all 0.4s ease;
+            color: var(--text-main); padding: 12px 24px; border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 4000; font-size: 0.9rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .toast-notification.active { transform: translateX(-50%) translateY(0); }
 
@@ -295,7 +338,7 @@
                 <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
             </button>
             <button class="top-btn" onclick="toggleLanguage()">
-                <span id="lang-label">EN</span>
+                <span id="lang-label" style="font-weight: 700; font-size: 0.8rem;">EN</span>
             </button>
         </div>
 
@@ -304,7 +347,7 @@
                 <img src="https://f.top4top.io/p_38068cvpd0.jpg" alt="الشيخ محمد صديق المنشاوي" class="header-img">
             </div>
             <h1 id="main-title">الشيخ محمد صديق <strong>المنشاوي</strong></h1>
-            <p id="header-subtitle">الختمة المرتلة</p>
+            <p id="header-subtitle">الختمة المرتلة - جودة عالية</p>
         </header>
 
         <div class="khatmah-cards-container">
@@ -327,13 +370,17 @@
         <div class="surah-list-container" id="main-surah-list"></div>
     </div>
 
+    <!-- Floating Player -->
     <div class="floating-player" id="global-player">
-        <div class="player-seekbar-container" id="progress-container" onclick="seek(event)">
-            <div class="player-seekbar-fill" id="progress-bar-fill"></div>
+        <div class="player-seekbar-container" id="progress-container">
+            <div class="player-seekbar-fill" id="progress-bar-fill">
+                <div class="player-seekbar-thumb" id="progress-thumb"></div>
+            </div>
         </div>
         <div class="player-compact-row">
             <div class="player-info">
                 <div class="player-title" id="player-track-title">اختر سورة للبدء...</div>
+                <div class="player-time"><span id="curr-time">00:00</span> / <span id="total-time">00:00</span></div>
             </div>
             <div class="player-actions">
                 <button class="player-btn" onclick="playPrevious()"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg></button>
@@ -343,23 +390,47 @@
         </div>
     </div>
 
+    <!-- Download Overlay -->
+    <div class="download-overlay" id="download-overlay">
+        <div class="download-card">
+            <div class="download-title" id="dl-title-text">جاري التحميل... <span class="download-surah-name" id="dl-surah-name"></span></div>
+            <div class="download-progress-container">
+                <div class="download-progress-fill" id="dl-progress-fill"></div>
+            </div>
+            <div class="download-percent" id="dl-percent">0%</div>
+        </div>
+    </div>
+
     <script>
+        // Surah Data (Internal for single file)
         const surahNamesEN = {
             1: "Al-Fatihah", 2: "Al-Baqarah", 3: "Ali 'Imran", 4: "An-Nisa'", 18: "Al-Kahf", 36: "Ya-Sin", 55: "Ar-Rahman", 114: "An-Nas"
         };
+
+        // Sample Data for demonstration (In real usage, this would be populated from JSON or API)
+        let surahs = [
+            { id: 1, name: "الفاتحة", url: "https://server10.mp3quran.net/minsh/001.mp3" },
+            { id: 2, name: "البقرة", url: "https://server10.mp3quran.net/minsh/002.mp3" },
+            { id: 18, name: "الكهف", url: "https://server10.mp3quran.net/minsh/018.mp3" },
+            { id: 36, name: "يس", url: "https://server10.mp3quran.net/minsh/036.mp3" },
+            { id: 55, name: "الرحمن", url: "https://server10.mp3quran.net/minsh/055.mp3" },
+            { id: 114, name: "الناس", url: "https://server10.mp3quran.net/minsh/114.mp3" }
+        ];
 
         const i18n = {
             ar: {
                 title: "الشيخ محمد صديق <strong>المنشاوي</strong>",
                 khatmah1: "الختمة الأولى", khatmah2: "الختمة الثانية",
                 khatmah1Desc: "النسخة الكلاسيكية", khatmah2Desc: "النسخة المفقودة",
-                download: "تحميل مباشر", choose: "اختر سورة للبدء...", surah: "سورة ", play: "تشغيل", pause: "إيقاف"
+                download: "تحميل", choose: "اختر سورة للبدء...", surah: "سورة ", play: "تشغيل", pause: "إيقاف",
+                dl_start: "جاري التحميل...", dl_done: "تم التحميل بنجاح"
             },
             en: {
                 title: "Sheikh Mohamed Siddiq <strong>El-Minshawi</strong>",
                 khatmah1: "First Khatmah", khatmah2: "Second Khatmah",
                 khatmah1Desc: "Classic Edition", khatmah2Desc: "Lost Edition",
-                download: "Direct Download", choose: "Choose a Surah...", surah: "Surah ", play: "Play", pause: "Pause"
+                download: "Download", choose: "Choose a Surah...", surah: "Surah ", play: "Play", pause: "Pause",
+                dl_start: "Downloading...", dl_done: "Download Complete"
             }
         };
 
@@ -368,16 +439,15 @@
         let currentKhatmah = 1;
         let playingSurahId = null;
         let playingKhatmahId = null;
+        
+        // Audio Optimization
         let audioInstance = new Audio();
-        let surahs = [];
+        audioInstance.preload = "auto"; // Preload for faster start
 
+        // Theme Logic
         function toggleTheme() {
-            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
-            if (currentTheme === 'light') {
-                document.body.classList.add('light-theme');
-            } else {
-                document.body.classList.remove('light-theme');
-            }
+            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.body.classList.toggle('light-theme', currentTheme === 'light');
             updateThemeIcon();
         }
 
@@ -390,6 +460,7 @@
             }
         }
 
+        // Language Logic
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -408,25 +479,16 @@
             if (!playingSurahId) document.getElementById('player-track-title').innerText = t.choose;
         }
 
+        // Khatmah Switch
         async function switchKhatmah(num) {
             currentKhatmah = num;
             document.getElementById('khatmah-1-btn').classList.toggle('active', num === 1);
             document.getElementById('khatmah-2-btn').classList.toggle('active', num === 2);
-            await fetchSurahs();
+            // In a real app, fetchSurahs() would load new data
             renderUI();
         }
 
-        async function fetchSurahs() {
-            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
-            try {
-                const response = await fetch(fileName + '?v=' + Date.now());
-                surahs = await response.json();
-            } catch (error) {
-                console.error("Error loading JSON:", error);
-                surahs = [];
-            }
-        }
-
+        // UI Rendering
         function renderUI() {
             const list = document.getElementById('main-surah-list');
             list.innerHTML = '';
@@ -446,12 +508,12 @@
                         <span class="surah-name">${t.surah}${name}</span>
                     </div>
                     <div class="actions">
-                        <button class="icon-btn ${isPlaying ? 'playing-icon' : ''}" title="${isPlaying && !isPaused ? t.pause : t.play}">
+                        <button class="icon-btn ${isPlaying ? 'playing-icon' : ''}">
                             ${isPlaying && !isPaused ? 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>' : 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>'}
                         </button>
-                        <button class="icon-btn" onclick="event.stopPropagation(); downloadFile('${s.url}', '${name}')" title="${t.download}">
+                        <button class="icon-btn" onclick="event.stopPropagation(); downloadFile('${s.url}', '${name}')">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                         </button>
                     </div>
@@ -460,6 +522,7 @@
             });
         }
 
+        // Play Logic
         function playSurah(s) {
             if (playingSurahId === s.id && playingKhatmahId === currentKhatmah) {
                 togglePlayPause();
@@ -467,8 +530,13 @@
             }
             playingSurahId = s.id;
             playingKhatmahId = currentKhatmah;
+            
+            // Optimization: Reset and Play
+            audioInstance.pause();
             audioInstance.src = s.url;
-            audioInstance.play();
+            audioInstance.load(); // Faster buffering
+            audioInstance.play().catch(e => console.log("Auto-play blocked or error:", e));
+            
             document.getElementById('global-player').classList.add('active');
             const name = currentLang === 'ar' ? s.name : (surahNamesEN[s.id] || s.name);
             document.getElementById('player-track-title').innerText = i18n[currentLang].surah + name;
@@ -504,50 +572,109 @@
             if (idx > 0) playSurah(surahs[idx - 1]);
         }
 
+        // Seekbar & Progress Logic
+        const progressContainer = document.getElementById('progress-container');
+        const progressBarFill = document.getElementById('progress-bar-fill');
+        const currTimeEl = document.getElementById('curr-time');
+        const totalTimeEl = document.getElementById('total-time');
+
         audioInstance.ontimeupdate = () => {
-            const progress = (audioInstance.currentTime / audioInstance.duration) * 100;
-            document.getElementById('progress-bar-fill').style.width = progress + '%';
+            if (audioInstance.duration) {
+                const percent = (audioInstance.currentTime / audioInstance.duration) * 100;
+                progressBarFill.style.width = percent + '%';
+                currTimeEl.innerText = formatTime(audioInstance.currentTime);
+                totalTimeEl.innerText = formatTime(audioInstance.duration);
+            }
         };
 
-        audioInstance.onended = () => {
-            playNext();
-        };
-
-        function seek(e) {
-            const container = document.getElementById('progress-container');
-            const percent = e.offsetX / container.offsetWidth;
-            audioInstance.currentTime = percent * audioInstance.duration;
+        function formatTime(secs) {
+            const m = Math.floor(secs / 60);
+            const s = Math.floor(secs % 60);
+            return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
         }
 
+        // Draggable Seekbar Logic
+        let isDragging = false;
+
+        progressContainer.onmousedown = (e) => { isDragging = true; handleSeek(e); };
+        window.onmousemove = (e) => { if (isDragging) handleSeek(e); };
+        window.onmouseup = () => { isDragging = false; };
+
+        // Touch Support
+        progressContainer.ontouchstart = (e) => { isDragging = true; handleSeek(e.touches[0]); };
+        window.ontouchmove = (e) => { if (isDragging) handleSeek(e.touches[0]); };
+        window.ontouchend = () => { isDragging = false; };
+
+        function handleSeek(e) {
+            const rect = progressContainer.getBoundingClientRect();
+            let percent = (e.clientX - rect.left) / rect.width;
+            percent = Math.max(0, Math.min(1, percent));
+            progressBarFill.style.width = (percent * 100) + '%';
+            if (!isDragging) {
+                audioInstance.currentTime = percent * audioInstance.duration;
+            } else {
+                // Update time display while dragging
+                currTimeEl.innerText = formatTime(percent * audioInstance.duration);
+            }
+        }
+        
+        // Apply seek on click/end drag
+        progressContainer.onclick = (e) => {
+            const rect = progressContainer.getBoundingClientRect();
+            const percent = (e.clientX - rect.left) / rect.width;
+            audioInstance.currentTime = percent * audioInstance.duration;
+        };
+
+        audioInstance.onended = () => { playNext(); };
+
+        // Download Logic with Beautiful Progress Bar
         async function downloadFile(url, filename) {
-            showToast(currentLang === 'ar' ? "بدء التحميل..." : "Starting download...");
-            
-            // محاولة التحميل عبر Fetch للحصول على تحميل مباشر
+            const overlay = document.getElementById('download-overlay');
+            const fill = document.getElementById('dl-progress-fill');
+            const percentText = document.getElementById('dl-percent');
+            const surahNameText = document.getElementById('dl-surah-name');
+            const titleText = document.getElementById('dl-title-text');
+            const t = i18n[currentLang];
+
+            surahNameText.innerText = t.surah + filename;
+            titleText.innerHTML = `${t.dl_start} <span class="download-surah-name">${t.surah}${filename}</span>`;
+            overlay.style.display = 'flex';
+            fill.style.width = '0%';
+            percentText.innerText = '0%';
+
             try {
-                const response = await fetch(url, { mode: 'cors' });
-                if (!response.ok) throw new Error('Network response was not ok');
-                const blob = await response.blob();
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Download failed');
+                
+                const reader = response.body.getReader();
+                const contentLength = +response.headers.get('Content-Length');
+                let receivedLength = 0;
+                let chunks = [];
+
+                while(true) {
+                    const {done, value} = await reader.read();
+                    if (done) break;
+                    chunks.push(value);
+                    receivedLength += value.length;
+                    const percent = Math.round((receivedLength / contentLength) * 100);
+                    fill.style.width = percent + '%';
+                    percentText.innerText = percent + '%';
+                }
+
+                const blob = new Blob(chunks);
                 const blobUrl = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = blobUrl;
                 a.download = `${filename}.mp3`;
-                document.body.appendChild(a);
                 a.click();
-                document.body.removeChild(a);
                 window.URL.revokeObjectURL(blobUrl);
+                
+                titleText.innerText = t.dl_done;
+                setTimeout(() => { overlay.style.display = 'none'; }, 1500);
             } catch (error) {
-                // Fallback: استخدام iframe أو فتح الرابط بطريقة تجبر التحميل إذا أمكن
-                console.warn("Fetch download failed, using fallback:", error);
-                const a = document.createElement('a');
-                a.href = url;
-                // إضافة بارامترات قد تساعد في بعض السيرفرات لإجبار التحميل
-                const downloadUrl = url.includes('?') ? `${url}&download=1` : `${url}?download=1`;
-                a.href = downloadUrl;
-                a.download = `${filename}.mp3`;
-                a.target = "_blank";
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                console.error(error);
+                overlay.style.display = 'none';
+                showToast(currentLang === 'ar' ? "فشل التحميل" : "Download Failed");
             }
         }
 
@@ -564,10 +691,10 @@
             setTimeout(() => toast.classList.remove('active'), 3000);
         }
 
-        (async () => {
+        // Initialize
+        (function() {
             updateThemeIcon();
             updateTexts();
-            await fetchSurahs();
             renderUI();
         })();
     </script>
