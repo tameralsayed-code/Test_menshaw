@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>الشيخ محمد صديق المنشاوي - المشغل المطور</title>
+    <title>الشيخ محمد صديق المنشاوي - الختمات المرتلة</title>
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JJ4WGLT89"></script>
@@ -18,6 +18,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
+            /* Light Theme (Default) - "رقيق" and Soft */
+            --bg-dark: #f8faf9;
+            --bg-mid: #ffffff;
+            --bg-light: #f0f4f2;
+            --accent-gold: #c5a059;
+            --accent-hover: #b38f4d;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --glass-bg: rgba(0, 0, 0, 0.02);
+            --glass-border: rgba(0, 0, 0, 0.05);
+            --glass-active: rgba(197, 160, 89, 0.08);
+            --player-bg: rgba(255, 255, 255, 0.95);
+            --switcher-btn-active: #ffffff;
+            --shadow-intensity: rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-theme {
             --bg-dark: #020d0a;
             --bg-mid: #031813;
             --bg-light: #06241c;
@@ -33,22 +50,6 @@
             --shadow-intensity: rgba(0, 0, 0, 0.4);
         }
 
-        body.light-theme {
-            --bg-dark: #f2f6f4;
-            --bg-mid: #e5ebe8;
-            --bg-light: #d8e2de;
-            --accent-gold: #b28500;
-            --accent-hover: #8f6a00;
-            --text-main: #1c2b27;
-            --text-muted: #617b75;
-            --glass-bg: rgba(0, 0, 0, 0.04);
-            --glass-border: rgba(0, 0, 0, 0.1);
-            --glass-active: rgba(178, 133, 0, 0.05);
-            --player-bg: rgba(229, 235, 232, 0.98);
-            --switcher-btn-active: #ffffff;
-            --shadow-intensity: rgba(0, 0, 0, 0.06);
-        }
-
         * { 
             box-sizing: border-box; 
             margin: 0; 
@@ -58,12 +59,11 @@
 
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.05); border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--accent-gold); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
 
         body {
             font-family: 'Cairo', sans-serif;
-            background: radial-gradient(circle at top, var(--bg-mid), var(--bg-dark)) fixed;
+            background: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -95,7 +95,7 @@
             background: transparent;
             border: 1px solid var(--glass-border);
             color: var(--text-muted);
-            width: 36px;
+            width: 36px; /* Back to original small size */
             height: 36px;
             border-radius: 50%;
             display: flex;
@@ -111,6 +111,9 @@
             border-color: rgba(212, 175, 55, 0.2);
         }
 
+        .top-btn svg { width: 18px; height: 18px; } /* Back to original small icon size */
+        .top-btn span { font-size: 0.75rem; font-weight: 700; }
+
         header { text-align: center; padding: 10px; }
         
         .header-image-container {
@@ -125,7 +128,7 @@
             object-fit: cover; 
             border-radius: 50%;
             border: 2px solid var(--accent-gold);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 4px 20px var(--shadow-intensity);
         }
         
         header h1 { 
@@ -146,9 +149,9 @@
         }
 
         .khatmah-card {
-            background: var(--glass-bg);
+            background: var(--bg-mid);
             border: 1px solid var(--glass-border);
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 8px 10px;
             cursor: pointer;
             display: flex;
@@ -156,6 +159,7 @@
             gap: 8px;
             transition: all 0.3s ease;
             outline: none;
+            box-shadow: 0 2px 5px var(--shadow-intensity);
         }
 
         .khatmah-card.active {
@@ -188,21 +192,23 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 14px;
-            background: var(--glass-bg);
+            background: var(--bg-mid);
             border: 1px solid var(--glass-border);
             border-radius: 12px;
             transition: all 0.2s ease;
             cursor: pointer;
+            box-shadow: 0 1px 3px var(--shadow-intensity);
         }
 
         .surah-row:hover {
-            background: rgba(255, 255, 255, 0.03);
+            background: var(--glass-bg);
             border-color: rgba(212, 175, 55, 0.2);
+            transform: scale(1.01);
         }
 
         .surah-row.active-row {
             border-color: var(--accent-gold);
-            background: rgba(212, 175, 55, 0.08);
+            background: var(--glass-active);
         }
 
         .surah-info { display: flex; align-items: center; gap: 10px; }
@@ -224,11 +230,11 @@
             transition: all 0.2s;
         }
 
-        .icon-btn:hover { color: var(--accent-gold); background: rgba(255, 255, 255, 0.05); }
+        .icon-btn:hover { color: var(--accent-gold); background: var(--bg-light); }
         .icon-btn svg { width: 18px; height: 18px; }
         .icon-btn.playing-icon { color: var(--accent-gold); }
 
-        /* Floating Player Styles */
+        /* Floating Player */
         .floating-player {
             position: fixed;
             bottom: 20px;
@@ -239,23 +245,23 @@
             background: var(--player-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
+            border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: none;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        body.dark-theme .floating-player { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border-color: rgba(212, 175, 55, 0.3); }
 
-        .floating-player.active { display: block; animation: slideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .floating-player.active { display: block; animation: slideUp 0.4s ease; }
         @keyframes slideUp { from { bottom: -100px; opacity: 0; } to { bottom: 20px; opacity: 1; } }
 
-        /* New Seekbar Styles */
+        /* Seekbar with Thumb */
         .player-seekbar-container {
             width: 100%;
             height: 6px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.05);
             border-radius: 10px;
             margin-bottom: 15px;
             cursor: pointer;
@@ -263,28 +269,27 @@
             display: flex;
             align-items: center;
         }
-        body.light-theme .player-seekbar-container { background: rgba(0, 0, 0, 0.08); }
+        body.dark-theme .player-seekbar-container { background: rgba(255, 255, 255, 0.1); }
 
         .player-seekbar-fill { 
             height: 100%; 
-            background: linear-gradient(to left, var(--accent-gold), var(--accent-hover)); 
+            background: var(--accent-gold); 
             width: 0%; 
             border-radius: 10px; 
             position: relative;
         }
 
-        /* The Small Circle (Thumb) */
         .player-seekbar-thumb {
             position: absolute;
-            right: -6px;
+            right: -7px;
             top: 50%;
             transform: translateY(-50%);
             width: 14px;
             height: 14px;
-            background: var(--text-main);
-            border: 2px solid var(--accent-gold);
+            background: #fff;
+            border: 3px solid var(--accent-gold);
             border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
             cursor: pointer;
             transition: transform 0.1s;
         }
@@ -295,36 +300,48 @@
         .player-title { font-size: 0.9rem; font-weight: 700; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .player-time { font-size: 0.7rem; color: var(--text-muted); font-variant-numeric: tabular-nums; }
         
-        .player-actions { display: flex; align-items: center; gap: 8px; }
-        .player-btn { background: transparent; border: none; color: var(--text-main); cursor: pointer; padding: 6px; border-radius: 50%; transition: background 0.2s; }
-        .player-btn:hover { background: rgba(255,255,255,0.05); }
+        .player-actions { display: flex; align-items: center; gap: 10px; }
+        .player-btn { background: transparent; border: none; color: var(--text-main); cursor: pointer; padding: 6px; border-radius: 50%; }
         .player-btn svg { width: 22px; height: 22px; }
-        .play-toggle-btn { background: var(--accent-gold); color: var(--bg-dark); padding: 10px; }
-        .play-toggle-btn:hover { background: var(--accent-hover); transform: scale(1.05); }
+        
+        /* Circular Play Button */
+        .play-toggle-btn { 
+            background: var(--accent-gold); 
+            color: #fff !important; 
+            width: 44px; 
+            height: 44px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 10px rgba(197, 160, 89, 0.3);
+        }
 
-        /* Modern Download Progress */
+        /* Download Progress Overlay */
         .download-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(5px);
             display: none; align-items: center; justify-content: center; z-index: 3000;
         }
+        body.dark-theme .download-overlay { background: rgba(0, 0, 0, 0.85); }
+
         .download-card {
             background: var(--bg-mid); border: 1px solid var(--accent-gold);
             padding: 25px; border-radius: 20px; width: 85%; max-width: 320px;
-            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
         .download-title { font-size: 1rem; margin-bottom: 15px; color: var(--text-main); }
         .download-surah-name { color: var(--accent-gold); font-weight: 700; display: block; margin-top: 5px; }
-        .download-progress-container { height: 8px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin: 15px 0; }
+        .download-progress-container { height: 8px; background: var(--bg-light); border-radius: 10px; overflow: hidden; margin: 15px 0; }
         .download-progress-fill { height: 100%; background: var(--accent-gold); width: 0%; transition: width 0.3s; }
-        .download-percent { font-size: 0.8rem; color: var(--text-muted); font-weight: 700; }
+        .download-percent { font-size: 0.8rem; color: var(--accent-gold); font-weight: 700; }
 
         .toast-notification {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px);
-            background: var(--bg-dark); border: 1px solid var(--accent-gold);
-            color: var(--text-main); padding: 12px 24px; border-radius: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4); z-index: 4000; font-size: 0.9rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: var(--bg-mid); border: 1px solid var(--accent-gold);
+            color: var(--text-main); padding: 10px 20px; border-radius: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1); z-index: 4000; font-size: 0.85rem;
+            transition: all 0.4s ease;
         }
         .toast-notification.active { transform: translateX(-50%) translateY(0); }
 
@@ -338,7 +355,7 @@
                 <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg>
             </button>
             <button class="top-btn" onclick="toggleLanguage()">
-                <span id="lang-label" style="font-weight: 700; font-size: 0.8rem;">EN</span>
+                <span id="lang-label">EN</span>
             </button>
         </div>
 
@@ -347,7 +364,7 @@
                 <img src="https://f.top4top.io/p_38068cvpd0.jpg" alt="الشيخ محمد صديق المنشاوي" class="header-img">
             </div>
             <h1 id="main-title">الشيخ محمد صديق <strong>المنشاوي</strong></h1>
-            <p id="header-subtitle">الختمة المرتلة - جودة عالية</p>
+            <p id="header-subtitle">الختمة المرتلة</p>
         </header>
 
         <div class="khatmah-cards-container">
@@ -402,20 +419,9 @@
     </div>
 
     <script>
-        // Surah Data (Internal for single file)
         const surahNamesEN = {
             1: "Al-Fatihah", 2: "Al-Baqarah", 3: "Ali 'Imran", 4: "An-Nisa'", 18: "Al-Kahf", 36: "Ya-Sin", 55: "Ar-Rahman", 114: "An-Nas"
         };
-
-        // Sample Data for demonstration (In real usage, this would be populated from JSON or API)
-        let surahs = [
-            { id: 1, name: "الفاتحة", url: "https://server10.mp3quran.net/minsh/001.mp3" },
-            { id: 2, name: "البقرة", url: "https://server10.mp3quran.net/minsh/002.mp3" },
-            { id: 18, name: "الكهف", url: "https://server10.mp3quran.net/minsh/018.mp3" },
-            { id: 36, name: "يس", url: "https://server10.mp3quran.net/minsh/036.mp3" },
-            { id: 55, name: "الرحمن", url: "https://server10.mp3quran.net/minsh/055.mp3" },
-            { id: 114, name: "الناس", url: "https://server10.mp3quran.net/minsh/114.mp3" }
-        ];
 
         const i18n = {
             ar: {
@@ -434,33 +440,32 @@
             }
         };
 
+        // Default State
         let currentLang = 'ar';
-        let currentTheme = 'dark';
+        let currentTheme = 'light';
         let currentKhatmah = 1;
         let playingSurahId = null;
         let playingKhatmahId = null;
-        
-        // Audio Optimization
         let audioInstance = new Audio();
-        audioInstance.preload = "auto"; // Preload for faster start
+        audioInstance.preload = "auto";
+        let surahs = [];
 
         // Theme Logic
         function toggleTheme() {
-            currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.body.classList.toggle('light-theme', currentTheme === 'light');
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.body.classList.toggle('dark-theme', currentTheme === 'dark');
             updateThemeIcon();
         }
 
         function updateThemeIcon() {
             const icon = document.getElementById('theme-icon');
-            if (currentTheme === 'light') {
+            if (currentTheme === 'dark') {
                 icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
             } else {
                 icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
             }
         }
 
-        // Language Logic
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
@@ -479,16 +484,26 @@
             if (!playingSurahId) document.getElementById('player-track-title').innerText = t.choose;
         }
 
-        // Khatmah Switch
+        // Fetch Data from JSON (ORIGINAL LOGIC)
+        async function fetchSurahs() {
+            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
+            try {
+                const response = await fetch(fileName + '?v=' + Date.now());
+                surahs = await response.json();
+            } catch (error) {
+                console.error("Error loading JSON:", error);
+                surahs = [];
+            }
+        }
+
         async function switchKhatmah(num) {
             currentKhatmah = num;
             document.getElementById('khatmah-1-btn').classList.toggle('active', num === 1);
             document.getElementById('khatmah-2-btn').classList.toggle('active', num === 2);
-            // In a real app, fetchSurahs() would load new data
+            await fetchSurahs();
             renderUI();
         }
 
-        // UI Rendering
         function renderUI() {
             const list = document.getElementById('main-surah-list');
             list.innerHTML = '';
@@ -522,7 +537,6 @@
             });
         }
 
-        // Play Logic
         function playSurah(s) {
             if (playingSurahId === s.id && playingKhatmahId === currentKhatmah) {
                 togglePlayPause();
@@ -531,11 +545,10 @@
             playingSurahId = s.id;
             playingKhatmahId = currentKhatmah;
             
-            // Optimization: Reset and Play
             audioInstance.pause();
             audioInstance.src = s.url;
-            audioInstance.load(); // Faster buffering
-            audioInstance.play().catch(e => console.log("Auto-play blocked or error:", e));
+            audioInstance.load(); 
+            audioInstance.play().catch(e => console.log("Blocked:", e));
             
             document.getElementById('global-player').classList.add('active');
             const name = currentLang === 'ar' ? s.name : (surahNamesEN[s.id] || s.name);
@@ -572,7 +585,7 @@
             if (idx > 0) playSurah(surahs[idx - 1]);
         }
 
-        // Seekbar & Progress Logic
+        // Seekbar Logic
         const progressContainer = document.getElementById('progress-container');
         const progressBarFill = document.getElementById('progress-bar-fill');
         const currTimeEl = document.getElementById('curr-time');
@@ -593,14 +606,10 @@
             return `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
         }
 
-        // Draggable Seekbar Logic
         let isDragging = false;
-
         progressContainer.onmousedown = (e) => { isDragging = true; handleSeek(e); };
         window.onmousemove = (e) => { if (isDragging) handleSeek(e); };
         window.onmouseup = () => { isDragging = false; };
-
-        // Touch Support
         progressContainer.ontouchstart = (e) => { isDragging = true; handleSeek(e.touches[0]); };
         window.ontouchmove = (e) => { if (isDragging) handleSeek(e.touches[0]); };
         window.ontouchend = () => { isDragging = false; };
@@ -613,12 +622,10 @@
             if (!isDragging) {
                 audioInstance.currentTime = percent * audioInstance.duration;
             } else {
-                // Update time display while dragging
                 currTimeEl.innerText = formatTime(percent * audioInstance.duration);
             }
         }
         
-        // Apply seek on click/end drag
         progressContainer.onclick = (e) => {
             const rect = progressContainer.getBoundingClientRect();
             const percent = (e.clientX - rect.left) / rect.width;
@@ -627,7 +634,7 @@
 
         audioInstance.onended = () => { playNext(); };
 
-        // Download Logic with Beautiful Progress Bar
+        // Download Logic with Progress
         async function downloadFile(url, filename) {
             const overlay = document.getElementById('download-overlay');
             const fill = document.getElementById('dl-progress-fill');
@@ -644,8 +651,6 @@
 
             try {
                 const response = await fetch(url);
-                if (!response.ok) throw new Error('Download failed');
-                
                 const reader = response.body.getReader();
                 const contentLength = +response.headers.get('Content-Length');
                 let receivedLength = 0;
@@ -672,9 +677,8 @@
                 titleText.innerText = t.dl_done;
                 setTimeout(() => { overlay.style.display = 'none'; }, 1500);
             } catch (error) {
-                console.error(error);
                 overlay.style.display = 'none';
-                showToast(currentLang === 'ar' ? "فشل التحميل" : "Download Failed");
+                showToast("Download Failed");
             }
         }
 
@@ -691,10 +695,11 @@
             setTimeout(() => toast.classList.remove('active'), 3000);
         }
 
-        // Initialize
-        (function() {
+        // Init
+        (async function() {
             updateThemeIcon();
             updateTexts();
+            await fetchSurahs();
             renderUI();
         })();
     </script>
