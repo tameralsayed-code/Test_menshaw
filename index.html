@@ -72,9 +72,6 @@
             user-select: none;
             -webkit-user-select: none;
             transition: background-color 0.15s ease, color 0.15s ease;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            will-change: scroll-position;
         }
 
         .container {
@@ -83,7 +80,7 @@
             padding: 8px 16px 20px 16px; 
             display: flex;
             flex-direction: column;
-            gap: 8px; 
+            gap: 10px; 
         }
 
         .top-bar {
@@ -149,7 +146,7 @@
         .khatmah-cards-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 4px;
             width: 100%;
             margin-bottom: 8px; 
         }
@@ -191,119 +188,7 @@
         .khatmah-card-title { font-size: 0.75rem; font-weight: 700; color: var(--text-main); line-height: 1.2; }
         .khatmah-card-desc { font-size: 0.6rem; color: var(--text-muted); }
 
-        /* Search Bar */
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--bg-mid);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 8px 12px;
-            margin-bottom: 8px;
-            transition: border-color 0.15s ease, background-color 0.15s ease;
-        }
-
-        .search-container:focus-within {
-            border-color: var(--accent-gold);
-            background: var(--glass-active);
-        }
-
-        .search-container svg {
-            width: 16px;
-            height: 16px;
-            color: var(--text-muted);
-            flex-shrink: 0;
-        }
-
-        #search-input {
-            flex: 1;
-            background: transparent;
-            border: none;
-            color: var(--text-main);
-            font-family: 'Cairo', sans-serif;
-            font-size: 0.85rem;
-            outline: none;
-            min-width: 0;
-        }
-
-        #search-input::placeholder {
-            color: var(--text-muted);
-            opacity: 0.6;
-        }
-
-        .search-clear-btn {
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            padding: 4px;
-            display: none;
-            flex-shrink: 0;
-            transition: color 0.15s ease;
-        }
-
-        .search-clear-btn:hover {
-            color: var(--accent-gold);
-        }
-
-        .search-clear-btn.active {
-            display: block;
-        }
-
-        .search-clear-btn svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        /* Filter Tabs */
-        .filter-tabs {
-            display: flex;
-            gap: 6px;
-            margin-bottom: 8px;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-            padding-bottom: 2px;
-        }
-
-        .filter-tabs::-webkit-scrollbar {
-            height: 2px;
-        }
-
-        .filter-tab {
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.15s ease;
-            flex-shrink: 0;
-        }
-
-        .filter-tab:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-
-        .filter-tab.active {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: #fff;
-        }
-
-        .surah-list-container { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 6px;
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-        }
+        .surah-list-container { display: flex; flex-direction: column; gap: 4px; }
 
         .surah-row {
             display: flex;
@@ -315,10 +200,6 @@
             border-radius: 12px;
             transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
             box-shadow: 0 1px 3px var(--shadow-intensity);
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
 
         .surah-row:hover {
@@ -354,7 +235,6 @@
         .icon-btn:hover { color: var(--accent-gold); background: var(--bg-light); }
         .icon-btn svg { width: 18px; height: 18px; }
         .icon-btn.playing-icon { color: var(--accent-gold); }
-        .icon-btn.favorite-active { color: #e74c3c; }
 
         /* Floating Player */
         .floating-player {
@@ -365,39 +245,19 @@
             width: 92%;
             max-width: 440px;
             background: var(--player-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 12px 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             z-index: 1000;
             display: none;
-            -webkit-transform: translate3d(-50%, 0, 0);
-            transform: translate3d(-50%, 0, 0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
         }
         body.dark-theme .floating-player { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border-color: rgba(212, 175, 55, 0.3); }
 
-        .floating-player.active { 
-            display: block; 
-            animation: slideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            -webkit-transform: translate3d(-50%, 0, 0);
-            transform: translate3d(-50%, 0, 0);
-        }
-        @keyframes slideUp { 
-            from { 
-                bottom: -100px; 
-                opacity: 0; 
-                -webkit-transform: translate3d(-50%, 0, 0);
-                transform: translate3d(-50%, 0, 0);
-            } 
-            to { 
-                bottom: 15px; 
-                opacity: 1; 
-                -webkit-transform: translate3d(-50%, 0, 0);
-                transform: translate3d(-50%, 0, 0);
-            } 
-        }
+        .floating-player.active { display: block; animation: slideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        @keyframes slideUp { from { bottom: -100px; opacity: 0; } to { bottom: 15px; opacity: 1; } }
 
         /* Seekbar with Thumb */
         .player-seekbar-container {
@@ -483,92 +343,6 @@
         }
         .player-btn.opt-btn svg { width: 15px; height: 15px; }
 
-        /* Sleep Timer Modal */
-        .sleep-timer-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.2s ease;
-        }
-
-        .sleep-timer-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .sleep-timer-card {
-            background: var(--bg-mid);
-            border: 1px solid var(--accent-gold);
-            border-radius: 20px;
-            padding: 20px;
-            width: 85%;
-            max-width: 300px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
-        }
-
-        .sleep-timer-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 15px;
-        }
-
-        .sleep-timer-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-bottom: 15px;
-        }
-
-        .sleep-timer-option {
-            background: var(--bg-light);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            padding: 10px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-main);
-            transition: all 0.15s ease;
-        }
-
-        .sleep-timer-option:hover {
-            border-color: var(--accent-gold);
-            background: var(--glass-active);
-        }
-
-        .sleep-timer-option.selected {
-            background: var(--accent-gold);
-            border-color: var(--accent-gold);
-            color: #fff;
-        }
-
-        .sleep-timer-close {
-            background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-muted);
-            padding: 8px 16px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            transition: all 0.15s ease;
-        }
-
-        .sleep-timer-close:hover {
-            border-color: var(--accent-gold);
-            color: var(--accent-gold);
-        }
-
         /* Download Progress Overlay */
         .download-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -641,27 +415,6 @@
             </button>
         </div>
 
-        <!-- Search Bar -->
-        <div class="search-container">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <path d="m21 21-4.35-4.35"></path>
-            </svg>
-            <input type="text" id="search-input" placeholder="ابحث عن سورة..." />
-            <button class="search-clear-btn" onclick="clearSearch()">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="filter-tabs" id="filter-tabs">
-            <button class="filter-tab active" onclick="filterSurahs('all')" data-filter="all" id="tab-all">الكل</button>
-            <button class="filter-tab" onclick="filterSurahs('favorites')" data-filter="favorites" id="tab-favorites">المفضلة</button>
-        </div>
-
         <div class="surah-list-container" id="main-surah-list"></div>
     </div>
 
@@ -692,14 +445,6 @@
                 <button class="player-btn play-toggle-btn" id="player-play-btn" onclick="togglePlayPause()"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg></button>
                 <button class="player-btn" onclick="playNext()"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg></button>
                 
-                <!-- مؤقت النوم -->
-                <button class="player-btn opt-btn" id="player-sleep-btn" onclick="openSleepTimer()" title="مؤقت النوم">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="13" r="8"></circle>
-                        <path d="M12 9v4l3 2"></path>
-                    </svg>
-                </button>
-
                 <!-- خيار التشغيل التلقائي المتتالي -->
                 <button class="player-btn opt-btn active" id="player-autoplay-btn" onclick="toggleAutoplay()" title="التشغيل التلقائي">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -707,20 +452,6 @@
                     </svg>
                 </button>
             </div>
-        </div>
-    </div>
-
-    <!-- Sleep Timer Modal -->
-    <div class="sleep-timer-modal" id="sleep-timer-modal">
-        <div class="sleep-timer-card">
-            <div class="sleep-timer-title" id="sleep-timer-title">مؤقت النوم</div>
-            <div class="sleep-timer-options">
-                <button class="sleep-timer-option" onclick="setSleepTimer(15)">15 دقيقة</button>
-                <button class="sleep-timer-option" onclick="setSleepTimer(30)">30 دقيقة</button>
-                <button class="sleep-timer-option" onclick="setSleepTimer(45)">45 دقيقة</button>
-                <button class="sleep-timer-option" onclick="setSleepTimer(60)">ساعة واحدة</button>
-            </div>
-            <button class="sleep-timer-close" onclick="closeSleepTimer()" id="sleep-timer-close">إغلاق</button>
         </div>
     </div>
 
@@ -788,16 +519,7 @@
                 autoplayOn: "تم تفعيل التشغيل التلقائي", 
                 autoplayOff: "تم إيقاف التشغيل التلقائي",
                 repeatTooltip: "تكرار السورة", 
-                autoplayTooltip: "التشغيل التلقائي",
-                search: "ابحث عن سورة...",
-                all: "الكل",
-                favorites: "المفضلة",
-                addedToFavorites: "تمت إضافة السورة للمفضلة",
-                removedFromFavorites: "تمت إزالة السورة من المفضلة",
-                sleepTimer: "مؤقت النوم",
-                sleepTimerSet: "تم ضبط مؤقت النوم لـ",
-                sleepTimerCanceled: "تم إلغاء مؤقت النوم",
-                sleepTimerClose: "إغلاق"
+                autoplayTooltip: "التشغيل التلقائي"
             },
             en: {
                 title: "Sheikh Mohamed Siddiq <strong>El-Minshawi</strong>",
@@ -817,16 +539,7 @@
                 autoplayOn: "Autoplay Enabled", 
                 autoplayOff: "Autoplay Disabled",
                 repeatTooltip: "Repeat Surah", 
-                autoplayTooltip: "Autoplay Next",
-                search: "Search for a Surah...",
-                all: "All",
-                favorites: "Favorites",
-                addedToFavorites: "Added to Favorites",
-                removedFromFavorites: "Removed from Favorites",
-                sleepTimer: "Sleep Timer",
-                sleepTimerSet: "Sleep timer set for",
-                sleepTimerCanceled: "Sleep timer canceled",
-                sleepTimerClose: "Close"
+                autoplayTooltip: "Autoplay Next"
             }
         };
 
@@ -838,24 +551,9 @@
         let playingKhatmahId = null;
         let audioInstance = new Audio();
         audioInstance.preload = "auto";
+        let surahs = [];
         let isRepeat = false;
         let isAutoplay = true;
-        let currentFilter = 'all';
-        let searchQuery = '';
-
-        // تخزين بيانات الختمتين في الذاكرة
-        let khatmahData = {
-            1: [],
-            2: []
-        };
-        let dataLoaded = false;
-
-        // المفضلات
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-
-        // مؤقت النوم
-        let sleepTimerTimeout = null;
-        let sleepTimerMinutes = 0;
 
         // Theme Logic
         function toggleTheme() {
@@ -888,132 +586,40 @@
             document.getElementById('khatmah-1-desc').innerText = t.khatmah1Desc;
             document.getElementById('khatmah-2-title').innerText = t.khatmah2;
             document.getElementById('khatmah-2-desc').innerText = t.khatmah2Desc;
-            document.getElementById('search-input').placeholder = t.search;
-            document.getElementById('tab-all').innerText = t.all;
-            document.getElementById('tab-favorites').innerText = t.favorites;
             document.getElementById('player-repeat-btn').title = t.repeatTooltip;
             document.getElementById('player-autoplay-btn').title = t.autoplayTooltip;
-            document.getElementById('player-sleep-btn').title = t.sleepTimer;
-            document.getElementById('sleep-timer-title').innerText = t.sleepTimer;
-            document.getElementById('sleep-timer-close').innerText = t.sleepTimerClose;
             if (!playingSurahId) document.getElementById('player-track-title').innerText = t.choose;
         }
 
-        // تحميل بيانات الختمتين مسبقاً
-        async function preloadAllData() {
+        // Fetch Data from JSON
+        async function fetchSurahs() {
+            const fileName = currentKhatmah === 1 ? 'surahs_1.json' : 'surahs_2.json';
             try {
-                const [data1, data2] = await Promise.all([
-                    fetch('surahs_1.json?v=' + Date.now()).then(r => r.json()),
-                    fetch('surahs_2.json?v=' + Date.now()).then(r => r.json())
-                ]);
-                khatmahData[1] = data1;
-                khatmahData[2] = data2;
-                dataLoaded = true;
-                renderUI();
+                const response = await fetch(fileName + '?v=' + Date.now());
+                surahs = await response.json();
             } catch (error) {
-                console.error("Error preloading data:", error);
-                khatmahData[1] = [];
-                khatmahData[2] = [];
-                dataLoaded = true;
+                console.error("Error loading JSON:", error);
+                surahs = [];
             }
         }
 
-        function switchKhatmah(num) {
+        async function switchKhatmah(num) {
             currentKhatmah = num;
             document.getElementById('khatmah-1-btn').classList.toggle('active', num === 1);
             document.getElementById('khatmah-2-btn').classList.toggle('active', num === 2);
-            searchQuery = '';
-            document.getElementById('search-input').value = '';
-            currentFilter = 'all';
-            updateFilterTabs();
+            await fetchSurahs();
             renderUI();
-        }
-
-        // البحث والتصفية
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            searchQuery = e.target.value.trim();
-            document.querySelector('.search-clear-btn').classList.toggle('active', searchQuery.length > 0);
-            renderUI();
-        });
-
-        function clearSearch() {
-            searchQuery = '';
-            document.getElementById('search-input').value = '';
-            document.querySelector('.search-clear-btn').classList.remove('active');
-            renderUI();
-        }
-
-        function filterSurahs(filter) {
-            currentFilter = filter;
-            updateFilterTabs();
-            renderUI();
-        }
-
-        function updateFilterTabs() {
-            document.querySelectorAll('.filter-tab').forEach(tab => {
-                tab.classList.toggle('active', tab.dataset.filter === currentFilter);
-            });
-        }
-
-        function toggleFavorite(surahId) {
-            const index = favorites.indexOf(surahId);
-            if (index > -1) {
-                favorites.splice(index, 1);
-                showToast(i18n[currentLang].removedFromFavorites);
-            } else {
-                favorites.push(surahId);
-                showToast(i18n[currentLang].addedToFavorites);
-            }
-            localStorage.setItem('favorites', JSON.stringify(favorites));
-            renderUI();
-        }
-
-        function isFavorite(surahId) {
-            return favorites.includes(surahId);
-        }
-
-        function getFilteredSurahs() {
-            let surahs = khatmahData[currentKhatmah] || [];
-
-            // تطبيق البحث
-            if (searchQuery) {
-                const query = searchQuery.toLowerCase();
-                surahs = surahs.filter(s => {
-                    const name = surahNames[currentLang][s.id] || s.name;
-                    return name.toLowerCase().includes(query) || s.id.toString().includes(query);
-                });
-            }
-
-            // تطبيق التصفية
-            if (currentFilter === 'favorites') {
-                surahs = surahs.filter(s => isFavorite(s.id));
-            }
-
-            // ترتيب المفضلة في الأعلى
-            if (currentFilter === 'all') {
-                surahs.sort((a, b) => {
-                    const aFav = isFavorite(a.id);
-                    const bFav = isFavorite(b.id);
-                    if (aFav && !bFav) return -1;
-                    if (!aFav && bFav) return 1;
-                    return a.id - b.id;
-                });
-            }
-
-            return surahs;
         }
 
         function renderUI() {
             const list = document.getElementById('main-surah-list');
             list.innerHTML = '';
             const t = i18n[currentLang];
-            const surahs = getFilteredSurahs();
 
             surahs.forEach(s => {
                 const name = surahNames[currentLang][s.id] || s.name;
                 const isPlaying = (playingSurahId === s.id && playingKhatmahId === currentKhatmah);
                 const isPaused = audioInstance.paused;
-                const isFav = isFavorite(s.id);
 
                 const row = document.createElement('div');
                 row.className = `surah-row ${isPlaying ? 'active-row' : ''}`;
@@ -1023,11 +629,6 @@
                         <span class="surah-name">${t.surah}${name}</span>
                     </div>
                     <div class="actions">
-                        <button class="icon-btn ${isFav ? 'favorite-active' : ''}" onclick="event.stopPropagation(); toggleFavorite(${s.id})">
-                            ${isFav ? 
-                                '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>' : 
-                                '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>'}
-                        </button>
                         <button class="icon-btn ${isPlaying ? 'playing-icon' : ''}" onclick="playSurah(${JSON.stringify(s).replace(/"/g, '&quot;')})">
                             ${isPlaying && !isPaused ? 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>' : 
@@ -1081,7 +682,6 @@
         }
 
         function playNext() {
-            const surahs = getFilteredSurahs();
             const idx = surahs.findIndex(s => s.id === playingSurahId);
             if (idx < surahs.length - 1) {
                 playSurah(surahs[idx + 1]);
@@ -1091,7 +691,6 @@
         }
 
         function playPrevious() {
-            const surahs = getFilteredSurahs();
             const idx = surahs.findIndex(s => s.id === playingSurahId);
             if (idx > 0) playSurah(surahs[idx - 1]);
         }
@@ -1107,33 +706,6 @@
             isAutoplay = !isAutoplay;
             document.getElementById('player-autoplay-btn').classList.toggle('active', isAutoplay);
             showToast(isAutoplay ? i18n[currentLang].autoplayOn : i18n[currentLang].autoplayOff);
-        }
-
-        // مؤقت النوم
-        function openSleepTimer() {
-            document.getElementById('sleep-timer-modal').classList.add('active');
-        }
-
-        function closeSleepTimer() {
-            document.getElementById('sleep-timer-modal').classList.remove('active');
-        }
-
-        function setSleepTimer(minutes) {
-            if (sleepTimerTimeout) clearTimeout(sleepTimerTimeout);
-            
-            sleepTimerMinutes = minutes;
-            document.getElementById('sleep-timer-modal').classList.remove('active');
-            
-            showToast(i18n[currentLang].sleepTimerSet + ' ' + minutes + ' ' + (currentLang === 'ar' ? 'دقيقة' : 'minutes'));
-            
-            document.getElementById('player-sleep-btn').classList.add('active');
-            
-            sleepTimerTimeout = setTimeout(() => {
-                audioInstance.pause();
-                updatePlayBtn(false);
-                document.getElementById('player-sleep-btn').classList.remove('active');
-                sleepTimerMinutes = 0;
-            }, minutes * 60 * 1000);
         }
 
         // Seekbar Logic
@@ -1261,19 +833,13 @@
             setTimeout(() => toast.classList.remove('active'), 2200);
         }
 
-        // Init - تحميل البيانات مسبقاً عند بدء التطبيق
+        // Init
         (async function() {
             updateThemeIcon();
             updateTexts();
-            await preloadAllData();
+            await fetchSurahs();
+            renderUI();
         })();
-
-        // إغلاق modal عند الضغط خارجه
-        document.getElementById('sleep-timer-modal').addEventListener('click', (e) => {
-            if (e.target === document.getElementById('sleep-timer-modal')) {
-                closeSleepTimer();
-            }
-        });
     </script>
 </body>
 </html>
