@@ -31,7 +31,7 @@
             --glass-bg: rgba(0, 0, 0, 0.02);
             --glass-border: rgba(0, 0, 0, 0.05);
             --glass-active: rgba(197, 160, 89, 0.08);
-            --player-bg: rgba(255, 255, 255, 0.95);
+            --player-bg: #ffffff;
             --switcher-btn-active: #ffffff;
             --shadow-intensity: rgba(0, 0, 0, 0.05);
         }
@@ -47,7 +47,7 @@
             --glass-bg: rgba(255, 255, 255, 0.015);
             --glass-border: rgba(255, 255, 255, 0.03);
             --glass-active: rgba(212, 175, 55, 0.04);
-            --player-bg: rgba(3, 24, 19, 0.95);
+            --player-bg: #031813;
             --switcher-btn-active: radial-gradient(circle at top right, var(--bg-light), var(--bg-mid));
             --shadow-intensity: rgba(0, 0, 0, 0.4);
         }
@@ -336,16 +336,14 @@
             width: 92%;
             max-width: 440px;
             background: var(--player-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 20px;
             padding: 12px 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
             z-index: 1000;
             display: none;
         }
-        body.dark-theme .floating-player { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); border-color: rgba(212, 175, 55, 0.3); }
+        body.dark-theme .floating-player { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6); border-color: rgba(212, 175, 55, 0.3); }
 
         .floating-player.active { display: block; animation: slideUp 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); }
         @keyframes slideUp { from { bottom: -100px; opacity: 0; } to { bottom: 15px; opacity: 1; } }
@@ -442,9 +440,7 @@
             transform: translate(-50%, 100%);
             width: 100%;
             max-width: 480px;
-            background: var(--player-bg);
-            backdrop-filter: blur(25px);
-            -webkit-backdrop-filter: blur(25px);
+            background: var(--bg-mid);
             border-top: 1px solid var(--glass-border);
             border-radius: 20px 20px 0 0;
             z-index: 2000;
@@ -509,13 +505,13 @@
         /* Download Progress Overlay */
         .download-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.98);
             display: flex; align-items: center; justify-content: center; z-index: 3000;
             opacity: 0;
             pointer-events: none;
             transition: opacity 0.2s ease;
         }
-        body.dark-theme .download-overlay { background: rgba(0, 0, 0, 0.85); }
+        body.dark-theme .download-overlay { background: rgba(2, 13, 10, 0.98); }
         .download-overlay.active { opacity: 1; pointer-events: auto; }
 
         .download-card {
@@ -943,15 +939,15 @@
                         <span class="surah-name">${t.surah}${name}</span>
                     </div>
                     <div class="actions">
-                        <!-- المفضلة -->
-                        <button class="icon-btn fav-btn ${isFav ? 'is-fav' : ''}" onclick="event.stopPropagation(); toggleFavorite(${s.id})" title="${t.only_favs}">
-                            ${favIcon}
-                        </button>
                         <!-- التشغيل -->
                         <button class="icon-btn ${isPlaying ? 'playing-icon' : ''}" onclick="playSurah(${JSON.stringify(s).replace(/"/g, '&quot;')})">
                             ${isPlaying && !isPaused ? 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>' : 
                                 '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>'}
+                        </button>
+                        <!-- المفضلة (تم وضعها بالمنتصف بجوار التشغيل والتحميل) -->
+                        <button class="icon-btn fav-btn ${isFav ? 'is-fav' : ''}" onclick="event.stopPropagation(); toggleFavorite(${s.id})" title="${t.only_favs}">
+                            ${favIcon}
                         </button>
                         <!-- التحميل -->
                         <button class="icon-btn" onclick="event.stopPropagation(); downloadFile('${s.url}', '${name}')">
